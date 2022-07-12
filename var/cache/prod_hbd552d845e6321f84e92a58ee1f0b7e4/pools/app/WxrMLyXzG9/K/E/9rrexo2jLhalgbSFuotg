@@ -1,0 +1,3 @@
+1657784598
+state-machine-initial-state-ids
+a:5:{s:23:"order_transaction.state";s:32:"0e59272da1b3417ea5f42d2a6c903bf6";s:38:"order_transaction_capture_refund.state";s:32:"20bb5b5273e34d0498f3f95f11f59b64";s:31:"order_transaction_capture.state";s:32:"1d0cdd879d6a41c1b309ad4aa2602932";s:20:"order_delivery.state";s:32:"11828c54b2d64ef680cce55aff4c9c7e";s:11:"order.state";s:32:"c95b3e28db1446508564a933fb43468e";}

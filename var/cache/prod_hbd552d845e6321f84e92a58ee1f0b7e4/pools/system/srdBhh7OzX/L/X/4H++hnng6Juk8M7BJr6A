@@ -1,0 +1,62 @@
+<?php //Shopware.Storefront.Framework.Captcha.HoneypotCaptcha
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        (($f = &\Symfony\Component\VarExporter\Internal\Registry::$factories)['Symfony\\Component\\Validator\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\ClassMetadata'))(),
+        ($f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'))(),
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Validator\\Constraints\\Blank'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Blank')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'Shopware\\Storefront\\Framework\\Captcha\\HoneypotCaptcha',
+                'honeypotValue',
+            ],
+            'defaultGroup' => [
+                'HoneypotCaptcha',
+            ],
+            'members' => [
+                [
+                    'honeypotValue' => [
+                        $o[1],
+                    ],
+                ],
+            ],
+            'properties' => [
+                [
+                    'honeypotValue' => $o[1],
+                ],
+            ],
+            'class' => [
+                1 => 'Shopware\\Storefront\\Framework\\Captcha\\HoneypotCaptcha',
+            ],
+            'property' => [
+                1 => 'honeypotValue',
+            ],
+            'constraints' => [
+                1 => [
+                    $o[2],
+                ],
+            ],
+            'constraintsByGroup' => [
+                1 => [
+                    'Default' => [
+                        $o[2],
+                    ],
+                    'HoneypotCaptcha' => [
+                        $o[2],
+                    ],
+                ],
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                    'HoneypotCaptcha',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

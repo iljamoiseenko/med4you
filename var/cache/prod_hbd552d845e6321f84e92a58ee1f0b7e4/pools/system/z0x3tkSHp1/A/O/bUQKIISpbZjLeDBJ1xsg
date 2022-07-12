@@ -1,0 +1,253 @@
+<?php //Shopware%255CCore%255CFramework%255CApi%255CController%255CAuthController%2523token
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Shopware\\Core\\Framework\\Routing\\Annotation\\Since'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Shopware\\Core\\Framework\\Routing\\Annotation\\Since')),
+        clone ($p['OpenApi\\Annotations\\Post'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Annotations\\Post')),
+        clone ($p['OpenApi\\Annotations\\RequestBody'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Annotations\\RequestBody')),
+        clone ($p['OpenApi\\Context'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Context')),
+        clone ($p['OpenApi\\Logger\\DefaultLogger'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Logger\\DefaultLogger')),
+        clone ($p['OpenApi\\Annotations\\JsonContent'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Annotations\\JsonContent')),
+        clone ($p['OpenApi\\Annotations\\Property'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Annotations\\Property')),
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone ($p['OpenApi\\Annotations\\Response'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('OpenApi\\Annotations\\Response')),
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Annotations\\JsonContent'],
+        clone $p['OpenApi\\Annotations\\Property'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Annotations\\Property'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Annotations\\Property'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone $p['OpenApi\\Context'],
+        clone $p['OpenApi\\Logger\\DefaultLogger'],
+        clone ($p['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+    ],
+    null,
+    [
+        'Shopware\\Core\\Framework\\Routing\\Annotation\\Since' => [
+            'value' => [
+                '6.0.0.0',
+            ],
+        ],
+        'stdClass' => [
+            'path' => [
+                1 => '/oauth/token',
+            ],
+            'tags' => [
+                1 => [
+                    'Admin API',
+                    'Authorization & Authentication',
+                ],
+            ],
+            'summary' => [
+                1 => 'Fetch an access token',
+            ],
+            'description' => [
+                1 => 'Fetch a access token that can be used to perform authenticated requests',
+                5 => 'For more information take a look at the [Authentication documentation](https://shopware.stoplight.io/docs/admin-api/docs/concepts/authentication-authorisation.md).',
+                'The grant type that should be used. See [OAuth 2.0 grant](https://oauth2.thephpleague.com/authorization-server/which-grant/) for more information.',
+                11 => 'Authorized successfully.',
+                15 => 'Type of the token.',
+                18 => 'Token lifetime in seconds.',
+                21 => 'The access token that can be used for subsequent requests',
+            ],
+            'operationId' => [
+                1 => 'token',
+            ],
+            'requestBody' => [
+                1 => $o[2],
+            ],
+            'responses' => [
+                1 => [
+                    $o[11],
+                ],
+            ],
+            '_context' => [
+                1 => $o[26],
+                $o[3],
+                5 => $o[9],
+                $o[7],
+                11 => $o[12],
+                14 => $o[24],
+                $o[16],
+                18 => $o[19],
+                21 => $o[22],
+            ],
+            'required' => [
+                2 => true,
+                5 => [
+                    'grant_type',
+                ],
+            ],
+            '_unmerged' => [
+                2 => [
+                    $o[5],
+                ],
+                11 => [
+                    $o[14],
+                ],
+            ],
+            'logger' => [
+                3 => $o[4],
+                7 => $o[8],
+                9 => $o[10],
+                12 => $o[13],
+                16 => $o[17],
+                19 => $o[20],
+                22 => $o[23],
+                24 => $o[25],
+                26 => $o[27],
+            ],
+            'filename' => [
+                3 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                7 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                9 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                12 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                16 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                19 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                22 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                24 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+                26 => '/Applications/MAMP/htdocs/shopware/vendor/shopware/core/Framework/Compatibility/DocParser.php',
+            ],
+            'line' => [
+                3 => 1009,
+                7 => 1009,
+                9 => 1009,
+                12 => 1009,
+                16 => 1009,
+                19 => 1009,
+                22 => 1009,
+                24 => 1009,
+                26 => 1009,
+            ],
+            'method' => [
+                3 => 'Annotation',
+                7 => 'Annotation',
+                9 => 'Annotation',
+                12 => 'Annotation',
+                16 => 'Annotation',
+                19 => 'Annotation',
+                22 => 'Annotation',
+                24 => 'Annotation',
+                26 => 'Annotation',
+            ],
+            'class' => [
+                3 => 'DocParser',
+                7 => 'DocParser',
+                9 => 'DocParser',
+                12 => 'DocParser',
+                16 => 'DocParser',
+                19 => 'DocParser',
+                22 => 'DocParser',
+                24 => 'DocParser',
+                26 => 'DocParser',
+            ],
+            'namespace' => [
+                3 => 'Shopware\\Core\\Framework\\Compatibility',
+                7 => 'Shopware\\Core\\Framework\\Compatibility',
+                9 => 'Shopware\\Core\\Framework\\Compatibility',
+                12 => 'Shopware\\Core\\Framework\\Compatibility',
+                16 => 'Shopware\\Core\\Framework\\Compatibility',
+                19 => 'Shopware\\Core\\Framework\\Compatibility',
+                22 => 'Shopware\\Core\\Framework\\Compatibility',
+                24 => 'Shopware\\Core\\Framework\\Compatibility',
+                26 => 'Shopware\\Core\\Framework\\Compatibility',
+            ],
+            'annotations' => [
+                3 => [
+                    $o[2],
+                ],
+                7 => [
+                    $o[6],
+                ],
+                9 => [
+                    $o[5],
+                ],
+                12 => [
+                    $o[11],
+                ],
+                16 => [
+                    $o[15],
+                ],
+                19 => [
+                    $o[18],
+                ],
+                22 => [
+                    $o[21],
+                ],
+                24 => [
+                    $o[14],
+                ],
+                26 => [
+                    $o[1],
+                ],
+            ],
+            'properties' => [
+                5 => [
+                    $o[6],
+                ],
+                14 => [
+                    $o[15],
+                    $o[18],
+                    $o[21],
+                ],
+            ],
+            'property' => [
+                6 => 'grant_type',
+                15 => 'token_type',
+                18 => 'expires_in',
+                21 => 'access_token',
+            ],
+            'type' => [
+                6 => 'string',
+                15 => 'string',
+                18 => 'integer',
+                21 => 'string',
+            ],
+            'enum' => [
+                6 => [
+                    'password',
+                    'refresh_token',
+                    'client_credentials',
+                ],
+            ],
+            'response' => [
+                11 => '200',
+            ],
+        ],
+        'Symfony\\Component\\Routing\\Annotation\\Route' => [
+            'path' => [
+                28 => '/api/oauth/token',
+            ],
+            'name' => [
+                28 => 'api.oauth.token',
+            ],
+            'defaults' => [
+                28 => [
+                    'auth_required' => false,
+                ],
+            ],
+            'methods' => [
+                28 => [
+                    'POST',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[28],
+    ],
+    []
+); }];

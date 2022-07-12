@@ -1,0 +1,3 @@
+<?php //Shopware%255CStorefront%255CFramework%255CCaptcha%255CAbstractCaptcha%2523isValid
+
+return [PHP_INT_MAX, []];
