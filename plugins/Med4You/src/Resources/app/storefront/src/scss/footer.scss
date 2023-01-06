@@ -1,0 +1,199 @@
+.footer-main {
+    border: none;
+}
+.footer-social-block {
+    .footer-social-title {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #1890FF;
+        margin-bottom: 18px;
+        position: relative;
+        padding-left: 30px;
+        &:before {
+            content: '';
+            background-image: url("/bundles/med4you/footer-clock.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+        }
+    }
+    .footer-social-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #717471;
+        margin-bottom: 12px;
+    }
+    .footer-social-icon-block {
+        display: flex;
+        .icon-block {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #424242;
+            border-radius: 50%;
+            margin-right: 16px
+        }
+    }
+    
+}
+.footer-columns {
+    padding: 40px 0 28px 0;
+    border-bottom: 1px solid #DDDFDD;
+    margin: 0;
+    display: flex;
+}
+.footer-column {
+    margin-right: 132px;
+    &:last-child {
+        margin-right: 0;
+    }
+    .footer-column-content-inner {
+        padding: 0;
+    }
+    .footer-column-headline {
+        padding: 0;
+        a {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #717471;
+            margin-bottom: 12px;
+            padding: 0;
+        }
+        
+    }
+    .list-unstyled {
+        margin: 0;
+    }
+    .footer-link-item {
+        padding-bottom: 12px;
+        padding-top: 0;
+        .footer-link {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.005em;
+            color: #1E201E;
+        }
+    }
+}
+.footer-logos {
+    padding: 0;
+    display: none;
+}
+.footer-bottom {
+    background: #ffffff;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    .footer-bottom-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #717471;
+        margin: 0;
+
+    }
+    .footer-bottom-payment-block {
+        display: flex;
+        &:last-child {
+            margin-right: 0;
+        }
+        .footer-bottom-icon-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #D9D9D9;
+            border-radius: 2.5px;
+            width: 23px;
+            height: 16px;
+            margin-right: 12px;
+            &:last-child {
+                background-color: #1F72CD;
+            }
+        }
+    }
+}
+
+.newsletter-block {
+    padding: 32px 0;
+    background: #E0F0F1;
+    margin-top: 32px;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .newsletter-block-text {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        margin-bottom: 0;
+    }
+    .newsletter-block-form {
+        border-bottom: 1px solid #195D59;
+        .newsletter-button {
+            background-color: transparent;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #195D59;
+            &:focus {
+                outline: none;
+            }
+        }
+        .newsletter-form {
+            background-color: transparent;
+            border: none;
+            
+            width: 430px;
+            &::placeholder {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #252526;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+
+.footer-minimal {
+    background: #FBFBFD;
+    .footer-bottom-custom-block {
+        padding: 16px 0px;
+        p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #464648;
+            text-align: center;
+        }
+        .footer-main-text {
+            margin-bottom: 12px;
+        }
+        .footer-second-text {
+            margin-bottom: 0;
+        }
+    }
+}

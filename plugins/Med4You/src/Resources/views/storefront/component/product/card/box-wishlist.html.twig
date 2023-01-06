@@ -1,0 +1,120 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box_content %}
+    <div class="card-body card-body-wishlist">
+        {{ block('component_product_box_badges') }}
+
+        {{ block('component_product_box_rich_snippets') }}
+
+        {{ block('component_product_box_image') }}
+
+        {% block component_product_box_wishlist_action %}{% endblock %}
+
+        {% block component_product_box_wishlist %}
+            <div class="product-wishlist product-wishlist-remove">
+                {% block component_product_wishlist_remove_form %}
+                    {% set size = size ?? 'md' %}
+
+                    <form action="{{ path('frontend.wishlist.product.delete', {'id': id}) }}"
+                          method="post"
+                          class="product-wishlist-form"
+                          data-form-csrf-handler="true">
+
+                        {% block component_product_box_wishlist_remove_csrf %}
+                            {{ sw_csrf('frontend.wishlist.product.delete') }}
+                        {% endblock %}
+
+                        {% block component_product_wishlist_remove_redirect %}
+                            <input type="hidden"
+                                   name="redirectTo"
+                                   value="frontend.wishlist.page"/>
+                        {% endblock %}
+
+                        {% block component_product_wishlist_remove_submit %}
+                            <button type="submit" class="btn product-wishlist-btn product-wishlist-btn-remove">
+                                {# {% sw_icon 'x' style { 'class': 'icon-wishlist icon-wishlist-remove', 'size': size, 'pack': 'solid' } %} #}
+                                <svg class="wishlist icon-wishlist-added" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_b_665_2576)">
+                                <path d="M10 19L8.55 17.7C5.93333 15.3667 3.854 13.3374 2.312 11.612C0.770666 9.88736 0 8.06669 0 6.15002C0 4.58336 0.525 3.27502 1.575 2.22502C2.625 1.17502 3.93333 0.650024 5.5 0.650024C6.38333 0.650024 7.21667 0.837358 8 1.21202C8.78333 1.58736 9.45 2.10002 10 2.75002C10.55 2.10002 11.2167 1.58736 12 1.21202C12.7833 0.837358 13.6167 0.650024 14.5 0.650024C16.0667 0.650024 17.375 1.17502 18.425 2.22502C19.475 3.27502 20 4.58336 20 6.15002C20 8.06669 19.2293 9.88736 17.688 11.612C16.146 13.3374 14.0667 15.3667 11.45 17.7L10 19Z" fill="#FF4749"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_b_665_2576" x="-6" y="-5.34998" width="32" height="30.35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feGaussianBlur in="BackgroundImage" stdDeviation="3"/>
+                                <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_665_2576"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_665_2576" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+
+                    
+                            </button>
+                        {% endblock %}
+                    </form>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block component_product_box_info %}
+            <div class="product-info product-wishlist-info">
+                <div class="wishlist-product-rating-block">
+                    {# {{ block('component_product_box_rating') }} #}
+                    <div class="product-box-rating-block">
+                                
+                                {% block component_product_badges_topseller %}
+                                    {% if product.markAsTopseller %}
+                                        <div>
+                                            {# <span class="badge badge-warning badge-topseller">{{ "listing.boxLabelTopseller"|trans|sw_sanitize }}</span> #}
+                                            <p class="product-box-best-seller">Bestes angebot</p>
+                                        </div>
+                                        {% else %}
+                                        <p class="product-box-best-seller"></p>
+                                    {% endif %}
+                                {% endblock %}
+                                <div class="product-block-rating">
+                                {% if product.ratingAverage %}
+                                    <span class="product-box-rating-star"> 
+                                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.99997 10.3333L3.08131 12.7266L4.14664 8.25996L0.659973 5.27329L5.23664 4.90663L6.99997 0.666626L8.76331 4.90663L13.3406 5.27329L9.85331 8.25996L10.9186 12.7266L6.99997 10.3333Z" fill="#252526"/>
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                {% if product.ratingAverage %}
+                                <span class="product-box-rating-count">{{product.ratingAverage}},0</span>
+                                {% endif %}
+                                </div>
+                            </div>
+                </div>
+
+                {{ block('component_product_box_name') }}
+
+                {{ block('component_product_box_variant_characteristics') }}
+
+                {% block component_product_box_manufacturer %}
+                    <div class="product-wishlist-info-item product-wishlist-info-manufacturer">
+                        {% if product.manufacturer %}
+                            {{ "wishlist.manufacturerDisplayName"|trans|sw_sanitize }}:
+                            <span class="product-wishlist-info-text">{{ product.manufacturer.translated.name }}</span>
+                        {% endif %}
+                    </div>
+                {% endblock %}
+
+                {% block component_product_box_delivery_time %}
+                    <div class="product-wishlist-info-item product-wishlist-info-delivery-time">
+                        {% sw_include '@Storefront/storefront/component/wishlist/delivery-information.html.twig' %}
+                    </div>
+                {% endblock %}
+
+                {# @deprecated tag:v6.5.0 - Will be removed. The "Not available" case is now handled by include template delivery-information.html.twig #}
+                {% block component_product_box_currently_not_available %}{% endblock %}
+
+
+                <div class="wishlist-box-action-block">
+                    {{ block('component_product_box_price') }}
+
+                    {{ block('component_product_box_action') }}
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% block block_product_slider %}
+    {% set element = block.slots.getSlot('productSlider') %}
+    {% set columns = 1 %}
+
+    <div class="col-12 custom-product-slider-wrapper" data-cms-element-id="{{ element.id }}">
+    
+        {% block block_product_slider_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+    <style>
+        .cms-element-title-paragraph {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 36px;
+            color: #252526;
+            margin-bottom: 16px;
+        }
+        .custom-product-slider-wrapper {
+            padding: 0;
+        }
+        .custom-product-slider-wrapper .tns-item {
+            {# padding-right: 24px!important; #}
+        }
+        .custom-product-slider-wrapper .product-slider-controls-prev {
+            top: 20px;
+            right: 72px!important;
+            left: auto;
+            background: #e3e3e8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+        } 
+        .custom-product-slider-wrapper .product-slider-controls-next {
+            top: 20px;
+            right: 20px;
+            background: #e3e3e8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+        }
+        .custom-product-slider-wrapper .product-box .card-body {
+            padding: 0;
+        }
+        .custom-product-slider-wrapper .product-box {
+            border: none;
+        }
+        .custom-product-slider-wrapper .product-image-wrapper {
+            height: 292px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #FBFBFD;
+        }
+        .custom-product-slider-wrapper .product-image {
+            max-height: 100%
+        }
+        
+        
+    </style>
+{% endblock %}

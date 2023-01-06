@@ -1,0 +1,959 @@
+.account-content {
+    padding-top: 32px;
+}
+.container-main .account .account-content-aside {
+    max-width: 316px;
+    flex: auto;
+    padding-right: 4px;
+    .account-list-item-block {
+        display: flex;
+        align-items: center;
+    }
+    .account-icon {
+        display: flex;
+        align-items: center;
+        margin-right: 16px;
+        width: 24px;
+        height: 24px;
+    }
+    .account-aside-item {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        color: #7A7A7C;
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        &:active {
+            background: transparent;
+        }
+    }
+    .account-icon {
+        path {
+            fill: #7A7A7C;
+        }
+    }
+    .is-active {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+        color: #252526;
+        position: relative;
+        background: #E0F0F1;
+        padding: 12px 16px;
+        border-radius: 4px;
+        .account-icon {
+            path {
+                fill: #252526;
+            }
+        }
+
+    }
+    .account-aside-footer {
+        border: none;
+        padding: 38px 16px 16px 16px;
+        .account-aside-btn {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #195D59;
+            span {
+                padding-right: 12px;
+            }
+        }
+    }
+}
+
+
+.account-content {
+    flex-wrap: nowrap;
+}
+.container-main .account .account-content-main {
+    margin-left: 0;
+    flex: auto;
+    max-width: 100%;
+    .account-welcome {
+        padding-top: 0;
+        h1 {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 36px;
+            color: #252526;
+            border-bottom: 1px solid #E4E4E6;
+            padding-bottom: 16px;
+        }
+        p {
+            display: none;
+        }
+    }
+    .account-profile-personal {
+        margin-bottom: 24px;
+        .card-title {
+            border-bottom: none;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.0015em;
+            color: #252526;
+        }
+    }
+    .form-row {
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-label {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.004em;
+            color: #252526;
+            margin-bottom: 2px;
+        }
+        .form-control {
+            border: 1px solid #e4e4e6;
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #252526;
+
+        }
+        .custom-select {
+            border: 1px solid #E4E4E6;
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='10' height='18' viewBox='0 0 10 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5 18L0.5 13.5L1.95 12.05L5 15.1L8.05 12.05L9.5 13.5L5 18ZM1.95 6.05001L0.5 4.60001L5 0.100006L9.5 4.60001L8.05 6.05001L5 3.00001L1.95 6.05001Z' fill='%23464648'/%3e%3c/svg%3e");
+            background-size: auto;
+            background-position: right 14px top 11px;
+            &:focus {
+                border: 1px solid #195D59;
+                box-shadow: 0px 0px 3px #50ABAC;
+            }
+        }
+    }
+    .account-profile-required-info {
+        display: none;
+    }
+    .card-actions {
+        padding-bottom: 24px;
+        border-bottom: 1px solid #E4E4E6;
+        .profile-form-submit {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #7A7A7C;
+            padding: 10px 24px;
+            background: #F1F1F3;
+            border-radius: 4px;
+        }
+    }
+} 
+.account-profile-credentials {
+    .card-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        padding: 0;
+        margin-bottom: 16px;
+        border-bottom: none;
+    }
+    .align-items-center {
+        .account-profile-mail-label {
+            display: block;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+            margin-bottom: 4px;
+        }
+        .account-profile-mail {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.005em;
+            color: #252526;
+
+        }
+        .account-profile-change {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #195D59;
+
+        }
+        .col-md-6 {
+            flex: auto;
+            max-width: 30%;
+        }
+    }
+}
+.profile-content {
+    .account-email, .account-password {
+        .card-title {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.0015em;
+            color: #252526;
+            margin-bottom: 16px;
+            padding: 0;
+            border-bottom: 0;
+        }
+        .text-muted {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+            margin-bottom: 16px;
+        }
+        .profile-form-submit {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #FFFFFF;
+            background: #195D59;
+            border-radius: 4px;
+            padding: 10px 24px;
+        }
+        .account-close-custom-btn {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #195D59;
+            margin-left: 16px;
+        }
+        .card-actions {
+            border-bottom: 0;
+        }
+    }
+}
+    
+.default-address {
+    flex-wrap: nowrap;
+    margin: 0;
+    gap: 24px;
+    .address-card {
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .card-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        padding-bottom: 8px;
+        border-color: #e4e4e6;
+        margin-bottom: 12px;
+    }
+    p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #464648;
+        margin-bottom: 12px;
+    }
+}   
+
+.address-action-create {
+    .btn-primary {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0125em;
+        color: #FFFFFF;
+        padding: 10px 24px;
+        background: #195D59;
+        border-radius: 4px;
+        border: none;
+    }
+}
+
+.address-list {
+    .h3 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #e4e4e6;
+        margin-bottom: 12px;
+    }
+    .other-address {
+        .address {
+            p {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #464648;
+                margin-bottom: 12px;
+            }
+            
+        }
+        .card-actions {
+            border-bottom: none!important;
+            .address-actions-buttons {
+                .btn-light {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.0125em;
+                    color: #FFFFFF;
+                    padding: 10px 24px;
+                    background: #195D59;
+                    border-radius: 4px;
+                    border: none;
+                }   
+            }
+        } 
+    }
+}
+
+
+.is-act-accountaddressoverview {
+    .alert-success {
+        display: none;
+    }
+}
+.account-address-form {
+    .address-form-actions {
+        .btn-primary {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #FFFFFF;
+            padding: 10px 24px;
+            background: #195D59;
+            border-radius: 4px;
+            border: none;
+        }
+    }
+}
+
+.is-ctl-accountpayment {
+    .custom-control-label::before {
+        border: #252526 solid 2px;
+    }
+    .custom-control-input:checked ~ .custom-control-label::before {
+        border-color: #252526;
+        background: transparent;
+    }
+    .custom-control-input:focus ~ .custom-control-label::before {
+        box-shadow: none;
+
+    }
+    .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+        border-color: #252526;
+    }
+    .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+        background-image: none;
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: absolute;
+        left: -20px;
+        top: 6.5px;
+        background: #252526;
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        border: none;
+    }
+    .payment-method {
+        .payment-method-description {
+            display: flex;
+            flex-direction: column;
+            .payment-method-image {
+                width: fit-content;
+            }
+        }
+    }
+    .btn-primary {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0125em;
+        color: #FFFFFF;
+        padding: 10px 24px;
+        background: #195D59;
+        border-radius: 4px;
+        border: none;
+        
+    }
+}
+
+
+.account-content .account-content-main .account-orders {
+    .account-welcome {
+        h1 {
+            padding: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 36px;
+            color: #252526;
+            border: none;
+            .account-welcome-count {
+                color: #7A7A7C;
+            }
+        }
+        
+    }
+}
+.account-orders-overview {
+    .order-item-quantity, .order-item-total {
+        padding-left: 42px;
+    }
+    .order-table {
+        border: 1px solid #E4E4E6;
+    }
+    .order-wrapper {
+        .order-item-header {
+            background: #FBFBFD;
+            border-bottom: 1px solid #E4E4E6;
+            padding: 12px;
+            .order-table-header-heading {
+                padding-left: 12px;
+                margin: 0;
+                // &:before {
+                //     content: '';
+                //     position: absolute;
+                //     left: 0;
+                //     top: 0;
+                //     width: 4px;
+                //     height: 100%;
+                //     background: #1C7C79;
+                //     border-radius: 4px;
+                //     margin-right: 12px;
+                // }
+                
+                .order-table-header-status {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.001em;
+                    color: #1C7C79;
+                }
+                span {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.0025em;
+                    color: #7A7A7C;
+                }
+                .canceled-status {
+                    color: #7A7A7C;
+                }
+                .in-progress-status {
+                    color: #F07939;
+                }
+                .open-status {
+                    color: #1C7C79;
+                }
+            }
+            .open-status-class:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #1C7C79;
+                border-radius: 4px;
+                margin-right: 12px;
+            }
+            .in-progress-status-class:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #F07939;
+                border-radius: 4px;
+                margin-right: 12px;
+            }
+            .canseled-status-class:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #7A7A7C;
+                border-radius: 4px;
+                margin-right: 12px;
+            }
+            .order-table-header-devivery-date {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding-left: 12px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 1px;
+                    height: 100%;
+                    background: #E4E4E6;
+                    margin-right: 12px;
+                }
+                .text {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.0025em;
+                    color: #7A7A7C;
+                }
+                .date {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.001em;
+                    color: #252526;
+
+                }
+            }
+            .order-table-header-total {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding-left: 12px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 1px;
+                    height: 100%;
+                    background: #E4E4E6;
+                    margin-right: 12px;
+                }
+                .text {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.0025em;
+                    color: #7A7A7C;
+                }
+                .total {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.001em;
+                    color: #252526;
+                }
+            }
+            .order-table-header-context-menu-wrapper, .order-table-header-order-status {
+                display: none;
+
+            }
+            
+            .order-table-header-heading, .order-table-header-devivery-date, .order-table-header-total {
+                width: 33%;
+            }
+            .order-table-header-order-table-header, .order-table-header-order-table-body {
+                display: none;
+            }
+            
+        }
+        
+    }
+    .order-item-detail {
+        .order-detail-content {
+            border: none;
+        }
+        .order-detail-content-header {
+            display: none;
+        }
+        .order-item-detail-list-item-divider {
+            display: none;
+        }
+
+        .order-item-price, .order-item-quantity, .order-item-total {
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            text-align: left;
+        }
+        .order-detail-content-row {
+            margin: 0;
+            padding: 16px 12px;
+            padding-bottom: 0;
+            .order-item-image {
+                max-width: fit-content;
+                padding-right: 16px;
+                .order-item-img {
+                    width: 80px;
+                    height: 80px;
+                    background: #F6F6F8;
+                    border-radius: 12px;
+                }
+            }
+            .order-item-name {
+                padding-left: 0;
+                .name-value {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+                    letter-spacing: 0.005em;
+                    color: #252526;
+                }
+                .order-item-variants {
+                    display: none;
+                }
+            }
+            .order-item-price, .order-item-quantity, .order-item-total {
+                span {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.0025em;
+                    color: #7A7A7C;
+
+                }
+                .order-item-value {
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.001em;
+                    color: #252526;
+                }
+            }
+        }
+    }
+    .order-repeat-block {
+        display: flex;
+        justify-content: flex-end;
+        padding: 12px;
+        padding-top: 0;
+        .order-repeat {
+            display: flex;
+        }
+        .order-table-header-context-menu-content-link {
+            width: fit-content;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #16413D;
+            padding: 10px 24px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.24);  
+            border: 1px solid #E4E4E6;
+            margin-right: 12px;
+        }
+        form {
+            .order-table-header-context-menu-content-link {
+                color: #FFFFFF;
+                background: #195D59;
+                border-radius: 4px;
+                margin-right: 0;
+            }
+        }
+    }
+    .order-item-detail-footer {
+        background: transparent;
+        .order-item-detail-labels {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            .dt {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #7A7A7C;
+                margin-right: 8px;
+                width: fit-content;
+                flex: auto;
+                max-width: fit-content;
+            }
+            .dd {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #252526;
+                
+            }
+            .detail-summary-block {
+                display: flex;
+                justify-content: flex-start;
+            }
+        }
+        .order-item-detail-summary {
+            display: flex;
+            flex-direction: column;
+            .dt {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #7A7A7C;
+                min-width: 120px;
+                margin-right: 25px;
+            }
+            .dd {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #252526;
+                min-width: 160px;
+                text-align: end;
+                
+            }
+        }
+        .detail-summary-block {
+            display: flex;
+            justify-content: end;
+        }
+    }
+}
+
+.account-register {
+    padding-bottom: 64px;
+    padding-top: 32px;
+    .card-title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0.0015em;
+        color: #252526;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+    } 
+    .login-advantages {
+        .login-advantages-header {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.0015em;
+            color: #252526;
+            padding-bottom: 8px;
+            border-color: #e4e4e6;
+            margin-bottom: 12px;
+        }
+        li {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+        }
+    }
+    
+    .login-form {
+        .form-row {
+            margin: 0;
+            .form-control {
+                border-color: #e4e3e6;
+            }
+            .form-label {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 16px;
+                letter-spacing: 0.004em;
+                color: #252526;
+            }
+        }
+    }
+    .register-card {
+        .form-control {
+            border-color: #e4e3e6;
+        }
+        select {
+            border-color: #e4e3e6;
+        }
+        .form-label {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.004em;
+            color: #252526;
+        }
+    }
+    .custom-select {
+        border: 1px solid #E4E4E6;
+        border-radius: 4px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #7A7A7C;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='10' height='18' viewBox='0 0 10 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5 18L0.5 13.5L1.95 12.05L5 15.1L8.05 12.05L9.5 13.5L5 18ZM1.95 6.05001L0.5 4.60001L5 0.100006L9.5 4.60001L8.05 6.05001L5 3.00001L1.95 6.05001Z' fill='%23464648'/%3e%3c/svg%3e");
+        background-size: auto;
+        background-position: right 14px top 11px;
+        &:focus {
+            border: 1px solid #195D59;
+            box-shadow: 0px 0px 3px #50ABAC;
+        }
+    }
+    .login-submit {
+        .btn {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #FFFFFF;
+            padding: 10px 24px;
+            background: #195D59;
+            border-radius: 4px;
+            border: none;
+        }
+    }
+    .privacy-notice {
+        .data-protection-information {
+            label {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #7A7A7C;
+                a {
+                    color: #195D59;
+                }
+            }
+        }
+        .register-required-info {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+        }
+    }
+    .custom-control-input:focus {
+        box-shadow: none;
+        outline: none;
+
+    }
+    .custom-control-label {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.004em;
+        color: #464648;
+        &::before {
+            width: 12px;
+            height: 12px;
+            
+            border: 1px solid #E4E4E6;
+            border-radius: 1px;
+        }
+        &::after {
+            border-radius: 1px;
+            width: 12px;
+            height: 12px;
+        }
+    }
+    .custom-control-input:checked ~ .custom-control-label::after {
+        background-color: #1C7C79;
+        
+    }
+    .custom-control-input:focus ~ .custom-control-label::before {
+        box-shadow: none;
+        border-color: #E4E4E6;
+    }
+    .register-submit {
+        .btn {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #FFFFFF;
+            padding: 10px 24px;
+            background: #195D59;
+            border-radius: 4px;
+            border: none;
+        }
+    }
+}
+
+.account-recover-password {
+    .account-recover-password-form {
+        .card-title {
+            border-bottom: 1px solid #E4E4E6;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            letter-spacing: 0.0015em;
+            color: #252526;
+        }
+        .form-label {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.004em;
+            color: #252526;
+            margin-bottom: 2px;
+        }
+        .form-control {
+            border: 1px solid #e4e4e6;
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #252526;
+        
+        }
+        .account-recover-password-submit {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #FFFFFF;
+            padding: 10px 24px;
+            background: #195D59;
+            border-radius: 4px;
+            border: none;
+            &:hover {
+                background: #1C7C79;
+            }
+        }
+        .account-recover-password-back {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #195D59;
+            background-color: transparent;
+            border: none;
+            &:hover {
+                color: #1A6C69;
+            }
+        }
+    }
+}
+

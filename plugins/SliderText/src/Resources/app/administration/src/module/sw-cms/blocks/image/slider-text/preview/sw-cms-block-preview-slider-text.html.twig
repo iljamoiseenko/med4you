@@ -1,0 +1,21 @@
+{% block sw_cms_block_image_slider_preview %}
+<div class="sw-cms-preview-image-slider">
+    <sw-icon
+        name="regular-chevron-left"
+        size="20"
+    />
+    <img
+        :src="'/administration/static/img/cms/preview_mountain_small.jpg' | asset"
+        alt=""
+    >
+    <sw-icon
+        name="regular-chevron-right"
+        size="20"
+    />
+    <div class="slider-preview-text-block">
+        <p class="slider-preview-text-block-title">BEST SELLER</p>
+        <p class="slider-preview-text-block-sub-title">Free shipping</p>
+        <button class="slider-preview-text-block-button">Shop now</button>
+    </div>
+</div>
+{% endblock %}

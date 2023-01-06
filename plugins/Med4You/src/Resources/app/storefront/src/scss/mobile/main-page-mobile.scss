@@ -1,0 +1,110 @@
+@media (max-width: 1124px) {
+    .cms-block-image-text-row-custom {
+        .container-banners-wrapper-custom {
+            grid-template-areas:
+            "my-section1 my-section1 my-section1"
+            "my-section2 my-section2 my-section2"
+            "my-section3 my-section3 my-section3";
+            width: 100%;
+            .image-left-block,
+            .image-center-block,
+            .image-right-block {
+                width: 100%;
+            }
+            .left-block {
+                height: 400px;
+                .image-left-block {
+                    height: 400px;
+                }
+            }
+            .cms-element-text {
+                p {
+                    width: auto;
+                }
+            }
+        }
+       
+        // .container-banners-wrapper-custom {
+        //     display: block;
+        //     width: 100%;
+        //     .left-block, .center-block, .right-block {
+        //         width: 100%;
+        //         height: 400px;
+        //     }
+        // }
+    }
+    
+}
+
+@media (max-width: 924px) {
+    .container-banners-wrapper-four {
+        flex-wrap: wrap;
+        .left-block-four, .center-block-four,
+        .center-block-four, .right-block-four {
+            width: 50%;
+        }
+        .first:after {
+            display: none;
+        }
+        
+    }
+    .slider-text-wrapper {
+        .base-slider {
+            height: 400px;
+            .image-slider-item {
+                .image-slider-image {
+                    height: 400px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 730px) {
+    .slider-text-wrapper {
+        .image-slider-controls-container {
+            .base-slider-controls-prev {
+                left: 20px!important;
+            }
+            .base-slider-controls-next {
+                right: 20px!important;
+            }
+        }
+        
+        .slider-view-info-block {
+            left: 100px;
+        }
+    } 
+    
+}
+
+@media (max-width: 624px) {
+    .container-banners-wrapper-four {
+        .left-block-four, .center-block-four,
+        .right-block-four {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+        .left-block-four:after {
+            display: none;
+        }
+        .center-block-four:after {
+            display: none;
+        }
+        .right-block-four:after {
+            display: none;
+        }
+    }
+
+    
+}
+
+@media (max-width: 524px) {
+    .slider-view-info-block {
+        .slider-view-title {
+            font-size: 36px;
+            line-height: 40px;
+        }
+    }
+}

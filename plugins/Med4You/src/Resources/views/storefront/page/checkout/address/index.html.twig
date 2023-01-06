@@ -1,0 +1,158 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+{% block base_header %}
+    {% sw_include '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+{% endblock %}
+
+{% block base_navigation %}{% endblock %}
+
+{% block page_checkout_main_content %}
+
+    
+    {% block page_checkout_address %}
+        {% block page_checkout_address_header %}
+            <h1 class="address-main-header">
+                {{ "checkout.addressHeader"|trans|sw_sanitize }}
+                
+            </h1>
+        {% endblock %}
+        <div class="adress-breadcrumps-block">
+            <span>Lieferanschrift</span>
+            <span class="separator">/</span>
+            <span class="curent-page">Versand & Zahlung</span>
+        </div>
+
+        <h5 class="adress-subtitle">Lieferanschrift</h5>
+        {% block page_checkout_address_login_toggle %}
+            <div class="register-login-collapse-toogle">
+                {# {% sw_icon 'avatar' %} #}
+                Sie haben bereits ein Konto?
+                <a href="#loginCollapse"
+                   class="login-collapse-toggle"
+                   {{ dataBsToggleAttr }}="collapse"
+                   aria-expanded="false">
+                    Einloggen </a>
+            </div>
+        {% endblock %}
+
+        {% block page_checkout_address_login %}
+            <div class="collapse" id="loginCollapse">
+                {% block page_checkout_address_login_card %}
+                    {% sw_include '@Storefront/storefront/component/account/login.html.twig' %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block page_checkout_address_register %}
+            {% block page_checkout_address_register_card %}
+                {% sw_include '@Storefront/storefront/page/checkout/address/register.html.twig' with {
+                    'cardTitle': "checkout.addressRegisterCardTitle"|trans|sw_sanitize
+                } %}
+            {% endblock %}
+        {% endblock %}
+    {% endblock %}
+{% endblock %}
+
+{% block page_checkout_aside_summary %}
+    {{ parent() }}
+    <div class="page-checkout-address-promo-code">
+    
+        <form action="{{ path('frontend.checkout.promotion.add') }}"
+                  class="cart-add-promotion"
+                  data-form-csrf-handler="true"
+                  method="post">
+
+                {% block page_checkout_cart_add_promotion_csrf %}
+                    {{ sw_csrf('frontend.checkout.promotion.add') }}
+                {% endblock %}
+
+                {% block page_checkout_cart_add_promotion_forward %}
+                    <input type="hidden"
+                           name="redirectTo"
+                           value="frontend.checkout.cart.page">
+                {% endblock %}
+
+                {% block page_checkout_cart_add_promotion_input_group %}
+                    <div class="input-group checkout-aside-add-code">
+                        {% block page_checkout_cart_add_promotion_label %}
+                            <label class="{{ visuallyHiddenClass }}" for="addPromotionInput">
+                                {{ "checkout.addPromotionLabel"|trans|sw_sanitize }}
+                            </label>
+                        {% endblock %}
+
+                        {% block page_checkout_cart_add_promotion_input %}
+                            <input type="text"
+                                   name="code"
+                                   class="form-control"
+                                   id="addPromotionInput"
+                                   placeholder="{{ "checkout.addPromotionPlaceholder"|trans|striptags }}"
+                                   aria-label="{{ "checkout.addPromotionLabel"|trans|striptags }}"
+                                   aria-describedby="addPromotion"
+                                   required="required">
+                        {% endblock %}
+
+                        {% block page_checkout_cart_add_promotion_submit %}
+                            {# @deprecated tag:v6.5.0 - Bootstrap v5 removes `input-group-append` wrapper and uses elements as direct childs of `input-group` #}
+                            {% if feature('v6.5.0.0') %}
+                                <button class="btn btn-secondary"
+                                        type="submit"
+                                        id="addPromotion">
+                                    {% sw_icon 'checkmark' %}
+                                </button>
+                            {% else %}
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary"
+                                            type="submit"
+                                            id="addPromotion">
+                                        {# {% sw_icon 'checkmark' %} #}
+                                        Sich bewerben
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </form>
+
+    </div>
+
+
+    {% block page_checkout_address_products %}
+        <div class="checkout-aside-products">
+            {% block page_checkout_address_products_header %}
+                <h2 class="checkout-aside-product-header">
+                    {{ "checkout.cartHeader"|trans|sw_sanitize }}
+                    {% set isCartNotEmpty = (page.cart.lineItems|length > 0) %}
+                    {% set checkoutItemCounter = page.cart.lineItems|length %}
+                        {% if isCartNotEmpty %}
+                                ({{ checkoutItemCounter}})   
+                        {% endif %}
+                </h2>
+            {% endblock %}
+
+            {% block page_checkout_address_products_list %}
+                <div class="checkout-aside-product-list">
+                    {% block page_checkout_address_product_list_container %}
+                        {% for lineItem in page.cart.lineItems %}
+                            {% block page_checkout_address_product_summary_item %}
+                                {# @deprecated tag:v6.5.0 - Template `checkout-aside-item.html.twig` is deprecated. Use `storefront/component/line-item/line-item.html.twig` instead. #}
+                                {% if feature('v6.5.0.0') %}
+                                    {% sw_include '@Storefront/storefront/component/line-item/line-item.html.twig' with {
+                                        displayMode: 'offcanvas',
+                                        showQuantitySelect: false
+                                    } %}
+                                {% else %}
+                                    {% sw_include '@Storefront/storefront/page/checkout/checkout-aside-item.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+                        {% endfor %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block base_footer %}
+    {% sw_include '@Storefront/storefront/layout/footer/footer-minimal.html.twig' %}
+{% endblock %}

@@ -1,0 +1,254 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+
+{% block page_product_detail_buy_inner %}
+    <div class="js-magnifier-zoom-image-container">
+        {% block page_product_detail_rich_snippets %}
+            {% block page_product_detail_rich_snippets_brand %}
+                {% if page.product.manufacturer %}
+                    <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                        <meta itemprop="name" content="{{ page.product.manufacturer.translated.name }}" />
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_gtin13 %}
+                {% if page.product.ean %}
+                    <meta itemprop="gtin13"
+                          content="{{ page.product.ean }}"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_mpn %}
+                {% if page.product.manufacturerNumber %}
+                    <meta itemprop="mpn"
+                          content="{{ page.product.manufacturerNumber }}"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_weight %}
+                {% if page.product.weight %}
+                    <meta itemprop="weight"
+                          content="{{ page.product.weight }} kg"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_height %}
+                {% if page.product.height %}
+                    <meta itemprop="height"
+                          content="{{ page.product.height }} mm"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_width %}
+                {% if page.product.width %}
+                    <meta itemprop="width"
+                          content="{{ page.product.width }} mm"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_depth %}
+                {% if page.product.length %}
+                    <meta itemprop="depth"
+                          content="{{ page.product.length }} mm"/>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_product_detail_rich_snippets_release_date %}
+                <meta itemprop="releaseDate"
+                      content="{{ page.product.releaseDate|format_date(pattern="Y-MM-dd", locale=app.request.locale) }}"/>
+            {% endblock %}
+        {% endblock %}
+
+        {% if not feature('FEATURE_NEXT_16992') %}
+            {# @deprecated tag:v6.5.0 tag:)(FEATURE_NEXT_16992) - Block will be removed in v6.5.0 #}
+            {% block page_product_detail_not_available %}
+            {% endblock %}
+        {% endif %}
+
+        {% block page_product_detail_buy_container %}
+            <div itemprop="offers"
+                 itemscope
+                 itemtype="{% if page.product.calculatedPrices|length > 1 %}http://schema.org/AggregateOffer{% else %}http://schema.org/Offer{% endif %}">
+                {% block page_product_detail_data %}
+                    {% block page_product_detail_data_rich_snippet_url %}
+                        <meta itemprop="url"
+                              content="{{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}"/>
+                    {% endblock %}
+
+                    {% block page_product_detail_data_rich_snippet_price_range %}
+                        {% if page.product.calculatedPrices|length > 1 %}
+                            {% set lowestPrice = false %}
+                            {% set highestPrice = false %}
+
+                            {% for price in page.product.calculatedPrices %}
+                                {% if not lowestPrice or price.unitPrice < lowestPrice %}
+                                    {% set lowestPrice = price.unitPrice %}
+                                {% endif %}
+                                {% if not highestPrice or price.unitPrice > highestPrice %}
+                                    {% set highestPrice = price.unitPrice %}
+                                {% endif %}
+                            {% endfor %}
+
+                            <meta itemprop="lowPrice" content="{{ lowestPrice }}"/>
+                            <meta itemprop="highPrice" content="{{ highestPrice }}"/>
+                            <meta itemprop="offerCount" content="{{ page.product.calculatedPrices|length }}"/>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block page_product_detail_reviews %}
+                        {% if page.product.ratingAverage > 0 and page.reviews.totalReviews > 0 and config('core.listing.showReview') %}
+                            <div class="product-detail-reviews">
+
+                                {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                    points: page.product.ratingAverage,
+                                    style: 'text-primary'
+                                } %}
+                                <a {{ dataBsToggleAttr }}="tab"
+                                   class="product-detail-reviews-link"
+                                   data-offcanvas-tabs="true"
+                                   data-remote-click="true"
+                                   data-remote-click-options='{{ remoteClickOptions|json_encode }}'
+                                   href="#review-tab-pane"
+                                   aria-controls="review-tab-pane">
+                                    {{ page.reviews.totalReviews }}
+                                    {{ "detail.reviewLinkText"|trans({'%count%': page.reviews.totalReviews})|sw_sanitize }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block page_product_detail_data_rich_snippet_price_currency %}
+                        <meta itemprop="priceCurrency"
+                              content="{{ context.currency.translated.shortName }}"/>
+                    {% endblock %}
+
+                    {% block page_product_detail_price %}
+                        <div class="product-detail-price-container">
+                            {% sw_include '@Storefront/storefront/page/product-detail/buy-widget-price.html.twig' %}
+                            {# --------- #}
+                        </div>
+                    {% endblock %}
+
+                    
+
+                    {% set remoteClickOptions = {
+                        selector: "#review-tab",
+                        scrollToElement: true
+                    } %}
+
+                    {% block page_product_detail_delivery_informations %}
+                        <div class="product-detail-delivery-information">
+                            {% sw_include '@Storefront/storefront/component/delivery-information.html.twig' %}
+                        </div>
+                    {% endblock %}
+                {% endblock %}
+
+                {% block page_product_detail_configurator_include %}
+                    {% if page.product.parentId and page.configuratorSettings|length > 0 %}
+                        <div class="product-detail-configurator-container">
+                            {% sw_include '@Storefront/storefront/page/product-detail/configurator.html.twig' %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% block page_product_detail_buy_form %}
+                    {% if page.product.active %}
+                        <div class="product-detail-form-container">
+                            {% sw_include '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        <div class="product-wishlist-block">
+            {% if config('core.cart.wishlistEnabled') %}
+                {% block page_product_detail_wishlist %}
+                    {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+                        showText: true,
+                        size: 'md',
+                        productId: page.product.id
+                    } %}
+                {% endblock %}
+            {% endif %}
+        </div>
+        
+
+        {# {% block page_product_detail_ordernumber_container %}
+            {% if page.product.productNumber %}
+                <div class="product-detail-ordernumber-container">
+                    {% block page_product_detail_ordernumber_label %}
+                        <span class="product-detail-ordernumber-label">
+                            {{ "detail.productNumberLabel"|trans|sw_sanitize }}
+                        </span>
+                    {% endblock %}
+
+                    {% block page_product_detail_ordernumber %}
+                        <meta itemprop="productID"
+                              content="{{ page.product.id }}"/>
+                        <span class="product-detail-ordernumber"
+                              itemprop="sku">
+                            {{ page.product.productNumber }}
+                        </span>
+                    {% endblock %}
+                </div>
+            {% endif %}
+        {% endblock %} #}
+
+        
+        <div class="product-payment-block">
+            <div class="payment-icon-block">
+                <span class="payment-icon">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 15.5C18 15.7762 17.7761 16 17.5 16C17.2239 16 17 15.7762 17 15.5C17 15.2239 17.2239 15 17.5 15C17.7761 15 18 15.2239 18 15.5Z" fill="#252526"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.14718 1.24529L3.19651 7.59267C1.65078 7.95577 0.5 9.3435 0.5 11V21C0.5 22.933 2.067 24.5 4 24.5H8.63636C8.91251 24.5 9.13636 24.2761 9.13636 24C9.13636 23.7239 8.91251 23.5 8.63636 23.5H4C2.61929 23.5 1.5 22.3807 1.5 21V11C1.5 9.61929 2.61929 8.5 4 8.5H19C19.0136 8.5 19.0272 8.50011 19.0407 8.50033L19.0531 8.52163L19.0876 8.50151C20.4278 8.54767 21.5 9.64862 21.5 11V13H17.5C16.1193 13 15 14.1193 15 15.5C15 16.8807 16.1193 18 17.5 18H21.5V21C21.5 22.3807 20.3807 23.5 19 23.5H14.3636C14.0875 23.5 13.8636 23.7239 13.8636 24C13.8636 24.2761 14.0875 24.5 14.3636 24.5H19C20.933 24.5 22.5 22.933 22.5 21V18H23C23.5523 18 24 17.5523 24 17V14C24 13.4477 23.5523 13 23 13H22.5V11C22.5 9.28907 21.2723 7.86487 19.6499 7.56022L17.08 3.1571C16.3913 1.97696 14.8826 1.56846 13.6925 2.23987L12.8281 1.2814C11.8482 0.194238 10.1482 0.177561 9.14718 1.24529ZM12.0852 1.95089C11.4973 1.2986 10.4773 1.28859 9.87672 1.92923L4.97456 7.1582L12.7997 2.74356L12.0852 1.95089ZM6.40386 7.5L14.1838 3.11083C14.8979 2.70798 15.8031 2.95308 16.2164 3.66116L18.4569 7.5H6.40386ZM17.5 14H23V17H17.5C16.6716 17 16 16.3284 16 15.5C16 14.6716 16.6716 14 17.5 14Z" fill="#252526"/>
+                    <path d="M11 24.5C11.2761 24.5 11.5 24.2762 11.5 24C11.5 23.7239 11.2761 23.5 11 23.5C10.7239 23.5 10.5 23.7239 10.5 24C10.5 24.2762 10.7239 24.5 11 24.5Z" fill="#252526"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="payment-text-block">
+                <span class="payment-title">Zahlung.</span>
+                {% for payment in page.salesChannelPaymentMethods.elements %} 
+                    {% if loop.last %}
+                        <span class="payment-text">{{payment.name}} </span>
+                    {% else %}
+                        <span class="payment-text">{{payment.name}},</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+        </div>
+
+        <div class="product-shipping-block">
+            <div class="shipping-icon-block">
+                <span class="shipping-icon">
+                    <svg width="26" height="17" viewBox="0 0 26 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.99998 0.5C4.17155 0.5 3.49998 1.17157 3.49998 2V5C3.49998 5.27614 3.72383 5.5 3.99998 5.5C4.27612 5.5 4.49998 5.27614 4.49998 5V2C4.49998 1.72386 4.72383 1.5 4.99998 1.5H16C16.2761 1.5 16.5 1.72386 16.5 2V13.5H12C11.7238 13.5 11.5 13.7239 11.5 14C11.5 14.2761 11.7238 14.5 12 14.5H18C18.2761 14.5 18.5 14.2761 18.5 14C18.5 13.7239 18.2761 13.5 18 13.5H17.5V3.5H20.6349C20.7528 3.5 20.8669 3.54166 20.957 3.61763L24.3221 6.453C24.4349 6.54801 24.5 6.68793 24.5 6.83537V13C24.5 13.2761 24.2761 13.5 24 13.5H23.5C23.2238 13.5 23 13.7239 23 14C23 14.2761 23.2238 14.5 23.5 14.5H24C24.8284 14.5 25.5 13.8284 25.5 13V6.83537C25.5 6.39305 25.3048 5.97328 24.9665 5.68827L21.6014 2.8529C21.3309 2.62499 20.9886 2.5 20.6349 2.5H17.5V2C17.5 1.17157 16.8284 0.5 16 0.5H4.99998Z" fill="#252526"/>
+                    <path d="M4.49998 12C4.49998 11.7239 4.27612 11.5 3.99998 11.5C3.72383 11.5 3.49998 11.7239 3.49998 12V13C3.49998 13.8284 4.17155 14.5 4.99998 14.5H5.49998C5.77612 14.5 5.99998 14.2761 5.99998 14C5.99998 13.7239 5.77612 13.5 5.49998 13.5H4.99998C4.72383 13.5 4.49998 13.2761 4.49998 13V12Z" fill="#252526"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 5C18.2238 5 18 5.22386 18 5.5V9.5C18 9.77614 18.2238 10 18.5 10H22.5C22.7761 10 23 9.77614 23 9.5V7.20711C23 7.0745 22.9473 6.94732 22.8535 6.85355L21.1464 5.14645C21.0527 5.05268 20.9255 5 20.7929 5H18.5ZM19 6V9H22V7.41421L20.5858 6H19Z" fill="#252526"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23 15C23 16.1046 22.1045 17 21 17C19.8954 17 19 16.1046 19 15C19 13.8954 19.8954 13 21 13C22.1045 13 23 13.8954 23 15ZM22 15C22 15.5523 21.5523 16 21 16C20.4477 16 20 15.5523 20 15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15Z" fill="#252526"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.99998 17C10.1045 17 11 16.1046 11 15C11 13.8954 10.1045 13 8.99998 13C7.89541 13 6.99998 13.8954 6.99998 15C6.99998 16.1046 7.89541 17 8.99998 17ZM8.99998 16C9.55226 16 9.99998 15.5523 9.99998 15C9.99998 14.4477 9.55226 14 8.99998 14C8.44769 14 7.99998 14.4477 7.99998 15C7.99998 15.5523 8.44769 16 8.99998 16Z" fill="#252526"/>
+                    <path d="M2.99998 6.6C2.77906 6.6 2.59998 6.77909 2.59998 7C2.59998 7.22091 2.77906 7.4 2.99998 7.4H9.49998C9.72089 7.4 9.89997 7.22091 9.89997 7C9.89997 6.77909 9.72089 6.6 9.49998 6.6H2.99998Z" fill="#252526"/>
+                    <path d="M1.59998 8.5C1.59998 8.27909 1.77906 8.1 1.99998 8.1H8.49998C8.72089 8.1 8.89997 8.27909 8.89997 8.5C8.89997 8.72091 8.72089 8.9 8.49998 8.9H1.99998C1.77906 8.9 1.59998 8.72091 1.59998 8.5Z" fill="#252526"/>
+                    <path d="M0.999976 9.6C0.779062 9.6 0.599976 9.77909 0.599976 10C0.599976 10.2209 0.779062 10.4 0.999976 10.4H7.49998C7.72089 10.4 7.89998 10.2209 7.89998 10C7.89998 9.77909 7.72089 9.6 7.49998 9.6H0.999976Z" fill="#252526"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="shipping-text-block">
+                <span class="shipping-title">Lieferung.</span>
+                {# {{dump(page.salesChannelShippingMethods.elements)}} #}
+                {% for shipping in page.salesChannelShippingMethods.elements %} 
+                
+                    {% if loop.last %}
+                        <span class="shipping-text">{{shipping.name}} </span>
+                    {% else %}
+                        <span class="shipping-text">{{shipping.name}},</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+            
+       
+
+    </div>
+{% endblock %}

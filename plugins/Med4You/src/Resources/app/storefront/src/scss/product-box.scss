@@ -1,0 +1,147 @@
+.custom-product-slider-wrapper {
+    .product-box-rating-block {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+        .product-box-rating-count {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.004em;
+            color: #7A7A7C;
+    
+        }
+        .product-block-rating {
+            display: flex;
+            align-items: baseline;
+        }
+        .product-box-rating-star {
+            margin-right: 5px;
+            display: block;
+        }
+        .product-box-best-seller {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0025em;
+            color: #7A7A7C;
+            margin-bottom: 0;
+            height: 20px;
+        }
+    }
+    .product-name {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.001em;
+        color: #252526;
+        margin-bottom: 4px;
+        height: 20px;
+    }
+    .product-wishlist-action-circle {
+        top: 12px;
+        bottom: auto;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .product-price-info {
+        margin-top: 0;
+        .product-price-wrapper {
+            .list-price-price {
+                text-decoration: none;
+            }
+            .product-price {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.001em;
+                
+                color: #7A7A7C;
+                .list-price {
+                    color: #7A7A7C;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: 0.001em;
+                }
+                .separator {
+                    color: #7A7A7C;
+                } 
+            }
+            .with-list-price {
+                color: #FF4749;
+                .list-price {
+                    color: #7A7A7C;
+                }
+            }
+        }
+    }
+    .product-price-btn-buy-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        .product-box-btn-buy {
+            padding: 8px 12px;
+            border: 1px solid #E4E4E6;
+            border-radius: 4px;
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #16413D;
+            display: flex;
+            align-items: center;
+            span {
+                display: flex;
+                align-items: center;
+                margin-right: 12px;
+            }
+        }
+        .product-action {
+            margin-top: 0;
+        }
+        .product-box-btn-details {
+            padding: 8px 12px;
+            border: 1px solid #E4E4E6;
+            border-radius: 4px;
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.0125em;
+            color: #16413D;
+            display: flex;
+            align-items: center;
+            span {
+                display: flex;
+                align-items: center;
+                margin-right: 12px;
+            }
+        }
+    }
+    .product-badges {
+        top: 0;
+        .badge-discount {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.004em;
+            color: #FF4749;
+            padding: 0 5px;
+            background: transparent;
+            border: 1px solid #ff4749;
+            border-radius: 15px;
+            height: auto;
+            margin-top: 18px;
+            margin-left: 18px;
+        }
+    }
+    
+    
+}

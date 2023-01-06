@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_col_empty %}
+    <div class="cms-listing-col wishlist-listing-col col-12">
+        {% block element_product_listing_col_empty_wishlist %}
+            {# <img src="{{ asset('bundles/storefront/assets/illustration/wishlist_empty.svg', 'asset') }}"
+                 alt="{{ "wishlist.wishlistEmptyDescription"|trans|striptags }}"
+                 class="wishlist-listing-empty"/> #}
+            <div class="wishlist-icon-block">
+                <img class="wishlist-icon" src="{{ asset('bundles/med4you/wishlist.png', 'asset') }}" alt="wishlist">
+            </div>
+            
+            <div class="wishlist-text-block">
+                <h1 class="text-center wishlist-listing-header">{{ "wishlist.wishlistEmptyHeader"|trans }}</h1>
+                <p class="text-center wishlist-listing-description">{{ "wishlist.wishlistEmptyDescription"|trans }}</p>
+            </div>
+            <div class="wishlist-back-btn-block">
+                <a href="{{ path('frontend.home.page') }}" class="wishlist-back-btn"> Entdecken Sie Produkte</a>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block element_product_listing_sorting %}{% endblock %}

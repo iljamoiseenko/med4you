@@ -1,0 +1,77 @@
+{% sw_extends '@Storefront/storefront/component/product/card/wishlist.html.twig' %}
+
+{% block component_product_wishlist %}
+    {% set addToWishlistOptions = {
+        productId: productId,
+        router: {
+            add: {
+                afterLoginPath: path('frontend.wishlist.add.after.login', { productId: productId }),
+                path: path('frontend.wishlist.product.add', { productId: productId }),
+                token: sw_csrf('frontend.wishlist.product.add', {"mode": "token"})
+            },
+            remove: {
+                path: path('frontend.wishlist.product.remove', { productId: productId }),
+                token: sw_csrf('frontend.wishlist.product.remove', {"mode": "token"}),
+            }
+        }
+    } %}
+
+    {% set size = size ?? 'md' %}
+
+    <div class="product-wishlist">
+        {% block component_product_wishlist_button %}
+            <button
+                class="product-wishlist-{{ productId }} product-wishlist-action{% if appearance == 'circle' %}-circle{% endif %} product-wishlist-not-added product-wishlist-loading"
+                title="{{ "listing.toggleWishlist"|trans|sw_sanitize }}"
+                data-add-to-wishlist="true"
+                data-add-to-wishlist-options="{{ addToWishlistOptions|json_encode }}"
+            >
+                {% block component_product_wishlist_icon %}
+                    {# {% sw_icon 'heart-fill' style { 'class': 'wishlist icon-wishlist-added', 'size': size } %} #}
+                    {# {% sw_icon 'heart' style {'class': 'wishlist icon-wishlist-not-added', 'size': size } %} #}
+
+                    <svg class="wishlist icon-wishlist-added" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_b_665_2576)">
+                    <path d="M10 19L8.55 17.7C5.93333 15.3667 3.854 13.3374 2.312 11.612C0.770666 9.88736 0 8.06669 0 6.15002C0 4.58336 0.525 3.27502 1.575 2.22502C2.625 1.17502 3.93333 0.650024 5.5 0.650024C6.38333 0.650024 7.21667 0.837358 8 1.21202C8.78333 1.58736 9.45 2.10002 10 2.75002C10.55 2.10002 11.2167 1.58736 12 1.21202C12.7833 0.837358 13.6167 0.650024 14.5 0.650024C16.0667 0.650024 17.375 1.17502 18.425 2.22502C19.475 3.27502 20 4.58336 20 6.15002C20 8.06669 19.2293 9.88736 17.688 11.612C16.146 13.3374 14.0667 15.3667 11.45 17.7L10 19Z" fill="#FF4749"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_b_665_2576" x="-6" y="-5.34998" width="32" height="30.35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feGaussianBlur in="BackgroundImage" stdDeviation="3"/>
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_665_2576"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_665_2576" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>
+
+                    <svg class="wishlist icon-wishlist-not-added" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_b_665_2238)">
+                    <mask id="path-1-inside-1_665_2238" fill="white">
+                    <path d="M10 19L8.55 17.7C5.93333 15.3667 3.854 13.3374 2.312 11.612C0.770666 9.88736 0 8.06669 0 6.15002C0 4.58336 0.525 3.27502 1.575 2.22502C2.625 1.17502 3.93333 0.650024 5.5 0.650024C6.38333 0.650024 7.21667 0.837358 8 1.21202C8.78333 1.58736 9.45 2.10002 10 2.75002C10.55 2.10002 11.2167 1.58736 12 1.21202C12.7833 0.837358 13.6167 0.650024 14.5 0.650024C16.0667 0.650024 17.375 1.17502 18.425 2.22502C19.475 3.27502 20 4.58336 20 6.15002C20 8.06669 19.2293 9.88736 17.688 11.612C16.146 13.3374 14.0667 15.3667 11.45 17.7L10 19Z"/>
+                    </mask>
+                    <path d="M10 19L8.99868 20.1169L10 21.0146L11.0013 20.1169L10 19ZM8.55 17.7L9.55132 16.5832L9.54832 16.5805L8.55 17.7ZM2.312 11.612L1.19356 12.6116L1.19358 12.6116L2.312 11.612ZM8 1.21202L8.64816 -0.14071L8.64722 -0.141158L8 1.21202ZM10 2.75002L8.85492 3.71894L10 5.07221L11.1451 3.71894L10 2.75002ZM12 1.21202L11.3528 -0.141158L11.3518 -0.140709L12 1.21202ZM17.688 11.612L18.8064 12.6116L18.8064 12.6116L17.688 11.612ZM11.45 17.7L10.4517 16.5805L10.4487 16.5832L11.45 17.7ZM11.0013 17.8832L9.55132 16.5832L7.54868 18.8169L8.99868 20.1169L11.0013 17.8832ZM9.54832 16.5805C6.95479 14.2678 4.92077 12.28 3.43042 10.6125L1.19358 12.6116C2.78723 14.3947 4.91188 16.4656 7.55169 18.8196L9.54832 16.5805ZM3.43044 10.6125C2.08144 9.10303 1.5 7.62498 1.5 6.15002H-1.5C-1.5 8.5084 -0.540111 10.6717 1.19356 12.6116L3.43044 10.6125ZM1.5 6.15002C1.5 4.95684 1.88372 4.03762 2.63566 3.28568L0.51434 1.16436C-0.83372 2.51242 -1.5 4.20987 -1.5 6.15002H1.5ZM2.63566 3.28568C3.3876 2.53374 4.30682 2.15002 5.5 2.15002V-0.849976C3.55985 -0.849976 1.8624 -0.183696 0.51434 1.16436L2.63566 3.28568ZM5.5 2.15002C6.16334 2.15002 6.7751 2.2889 7.35278 2.56521L8.64722 -0.141158C7.65824 -0.614188 6.60333 -0.849976 5.5 -0.849976V2.15002ZM7.35184 2.56476C7.94826 2.85053 8.44443 3.23381 8.85492 3.71894L11.1451 1.78111C10.4556 0.966234 9.6184 0.324181 8.64816 -0.140709L7.35184 2.56476ZM11.1451 3.71894C11.5556 3.23381 12.0517 2.85053 12.6482 2.56476L11.3518 -0.140709C10.3816 0.324181 9.54443 0.966234 8.85492 1.78111L11.1451 3.71894ZM12.6472 2.56521C13.2249 2.2889 13.8367 2.15002 14.5 2.15002V-0.849976C13.3967 -0.849976 12.3418 -0.614188 11.3528 -0.141158L12.6472 2.56521ZM14.5 2.15002C15.6932 2.15002 16.6124 2.53374 17.3643 3.28568L19.4857 1.16436C18.1376 -0.183696 16.4402 -0.849976 14.5 -0.849976V2.15002ZM17.3643 3.28568C18.1163 4.03762 18.5 4.95684 18.5 6.15002H21.5C21.5 4.20987 20.8337 2.51242 19.4857 1.16436L17.3643 3.28568ZM18.5 6.15002C18.5 7.62498 17.9186 9.10303 16.5696 10.6125L18.8064 12.6116C20.5401 10.6717 21.5 8.5084 21.5 6.15002H18.5ZM16.5696 10.6125C15.0792 12.28 13.0452 14.2678 10.4517 16.5805L12.4483 18.8196C15.0881 16.4656 17.2128 14.3947 18.8064 12.6116L16.5696 10.6125ZM10.4487 16.5832L8.99868 17.8832L11.0013 20.1169L12.4513 18.8169L10.4487 16.5832Z" fill="#464648" mask="url(#path-1-inside-1_665_2238)"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_b_665_2238" x="-6" y="-5.34998" width="32" height="30.35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feGaussianBlur in="BackgroundImage" stdDeviation="3"/>
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_665_2238"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_665_2238" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>
+
+                    {% if showText %}
+                        <span class="product-wishlist-btn-content text-wishlist-not-added product-wishlist-btn-content-{{ size }}">
+                            {{ "listing.addToWishlist"|trans|sw_sanitize }}
+                        </span>
+                        <span class="product-wishlist-btn-content text-wishlist-remove product-wishlist-btn-content-{{ size }}">
+                            {{ "listing.removeFromWishlist"|trans|sw_sanitize }}
+                        </span>
+
+                    {% endif %}
+                {% endblock %}
+            </button>
+        {% endblock %}
+    </div>
+{% endblock %}

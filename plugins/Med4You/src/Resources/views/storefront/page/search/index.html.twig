@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_content %}
+    {% block page_search %}
+        <div class="cms-page search-page">
+            {% block page_search_headline %}
+                <h1 class="search-headline">
+                    {# {% block page_search_headline_text %}
+                        {{ "search.headline"|trans({
+                            '%count%': page.listing.total,
+                            '%searchTerm%': page.searchTerm,
+                        }) }}
+                    {% endblock %} #}
+                    Suchergebnisse
+                </h1>
+                {% if page.listing.total === 0 %}
+                    <div class="not-search-block">
+                        <img class="not-search-block-img" src="{{ asset('bundles/med4you/nothing-found.png', 'asset') }}" alt="serch-icon">
+                        <p class="not-search-block-bold-text">Keine passenden produkte für "{{page.searchTerm}}" mit ausgewählten filtern.</p>
+                        <p class="not-search-block-text">Überprüfen sie Ihre rechtschreibung und versuchen sie es erneut mit einem anderen schlüsselwort oder filter. </p>
+                        <a href="{{ path('frontend.home.page') }}" class="not-search-block-btn">Entdecken sie andere produkte</a>
+                    </div>
+
+                {% endif %}
+            {% endblock %}
+
+            {% sw_include '@Storefront/storefront/page/search/search-pagelet.html.twig' with { page: page } %}
+        </div>
+    {% endblock %}
+{% endblock %}

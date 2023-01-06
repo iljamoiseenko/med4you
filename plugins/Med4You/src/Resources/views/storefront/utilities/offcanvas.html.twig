@@ -1,0 +1,71 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{#
+    @deprecated tag:v6.5.0 - Announcement:
+    Bootstrap v5 comes with its own OffCanvas component.
+    This template will be adjusted to use Bootstraps OffCanvas markup.
+
+    @see https://getbootstrap.com/docs/5.1/components/offcanvas
+#}
+
+{% set isAjaxOffcanvas = false %}
+
+{% block utilities_offcanvas_meta %}
+    {# only including this for robots to have appropriate meta tags and when offcanvas is loaded via ajax #}
+    {% if not app.request.xmlHttpRequest and isAjaxOffcanvas %}
+        {% sw_include '@Storefront/storefront/layout/meta.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block utilities_offcanvas %}
+    {# @deprecated tag:v6.5.0 - Bootstrap v5 adds `.offcanvas-header` wrapper #}
+    {% if feature('v6.5.0.0') %}
+        {% block utilities_offcanvas_header %}
+            <div class="offcanvas-header p-0">
+           
+                {% block utilities_offcanvas_close %}
+                    {# @deprecated tag:v6.5.0 - Bootstrap v5 will not require classes `.btn-block .sticky-top`. Only `.offcanvas-body` will be scrollable #}
+                     
+                    <div class="canvas-header-block">
+                        <h3 class="canvas-header-title">
+                            Warenkorbübersicht 
+                            
+                            {% set isCartNotEmpty = (page.cart.lineItems|length > 0) %}
+                            {% set checkoutItemCounter = page.cart.lineItems|length %}
+                                {% if isCartNotEmpty %}
+                                        ({{ checkoutItemCounter}})   
+                                {% endif %}
+                        </h3>
+                        <button class="btn btn-light offcanvas-close js-offcanvas-close{% if not feature('v6.5.0.0') %} btn-block sticky-top{% endif %}">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.99999 5.586L11.95 0.636002L13.364 2.05L8.41399 7L13.364 11.95L11.95 13.364L6.99999 8.414L2.04999 13.364L0.635986 11.95L5.58599 7L0.635986 2.05L2.04999 0.636002L6.99999 5.586Z" fill="#252526"/>
+                                </svg>
+                            {# {% block utilities_offcanvas_close_icon %} #}
+                                {# {% sw_icon 'x' style { 'size': 'sm' } %} #}
+                                
+                                
+                            {# {% endblock %} #}
+
+                            {# {% block utilities_offcanvas_close_text %}
+                            
+                                {{ "general.offcanvasCloseMenu"|trans|sw_sanitize }}
+                            {% endblock %} #}
+                        </button>
+                    </div>
+                    
+                {% endblock %}
+            </div>
+        {% endblock %}
+    {% else %}
+        {{ block('utilities_offcanvas_close') }}
+    {% endif %}
+
+    {% block utilities_offcanvas_content_container %}
+        {# @deprecated tag:v6.5.0 - Bootstrap v5 will use class `.offcanvas-body` to wrap the offcanvas content #}
+        <div class="{% if feature('v6.5.0.0') %}offcanvas-body{% else %}offcanvas-content-container{% endif %} custom-canvas-wrapper">
+       
+            {% block utilities_offcanvas_content %}{% endblock %}
+
+        </div>
+    {% endblock %}
+{% endblock %}

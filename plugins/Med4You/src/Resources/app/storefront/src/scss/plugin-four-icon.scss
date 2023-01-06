@@ -1,0 +1,67 @@
+.container-banners-wrapper-four {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .text-right-block, .text-center-block, .text-left-block {
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.005em;
+            color: #464648;
+            margin: 0;
+        }
+    } 
+    .cms-element-image {
+        .cms-image-container {
+            img {
+                width: 36px!important;
+                height: 36px!important;
+            }
+        }
+    }
+    .left-block-four, .center-block-four, .right-block-four {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .text-right-block, .text-center-block, .text-left-block {
+        position: relative;
+        padding: 0;
+    }
+    .image-left-block, .image-center-block, .image-right-block {
+        width: 36px;
+        height: 36px;
+        margin-right: 16px;
+    }
+    .text-left-block, .text-center-block, .text-right-block {
+        h5 {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.0015em;
+            color: #252526;
+            margin: 0;
+        }
+        
+    }
+    .left-block-four:after {
+        content: '';
+        width: 1px;
+        height: 60px;
+        background: #F6F6F8;
+        position: absolute;
+        right: 12px;
+    }
+    .center-block-four:after {
+        content: '';
+        width: 1px;
+        height: 60px;
+        background: #F6F6F8;
+        position: absolute;
+        right: 12px;
+       
+    }
+}
+

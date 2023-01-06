@@ -1,0 +1,161 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box %}
+    {% if product %}
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+
+        <div class="card product-box box-{{ layout }}">
+            {% block component_product_box_content %}
+                <div class="card-body">
+                    {% block component_product_box_badges %}
+                        {% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}
+                    {% endblock %}
+
+                    {% block component_product_box_rich_snippets %}
+                        {# @deprecated tag:v6.5.0 - Block will be removed completely including the template it references #}
+                        {% sw_include '@Storefront/storefront/component/product/card/meta.html.twig' %}
+                    {% endblock %}
+
+                    {% block component_product_box_image %}
+                        <div class="product-image-wrapper">
+                            {# fallback if display mode is not set #}
+                            {% set displayMode = displayMode ?: 'standard' %}
+
+                            {# set display mode 'cover' for box-image with standard display mode #}
+                            {% if layout == 'image' and displayMode == 'standard' %}
+                                {% set displayMode = 'cover' %}
+                            {% endif %}
+
+                            <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                               title="{{ name }}"
+                               class="product-image-link is-{{ displayMode }}">
+                                {% if cover.url %}
+                                    {% set attributes = {
+                                        'class': 'product-image is-'~displayMode,
+                                        'alt': (cover.translated.alt ?: name),
+                                        'title': (cover.translated.title ?: name)
+                                    } %}
+
+                                    {% if displayMode == 'cover' or displayMode == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'product-image-thumbnails' with {
+                                        media: cover,
+                                        sizes: sizes
+                                    } %}
+                                {% else %}
+                                    <div class="product-image-placeholder">
+                                        {% sw_icon 'placeholder' style {
+                                            'size': 'fluid'
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            </a>
+
+                            {% if config('core.cart.wishlistEnabled') %}
+                                {% block component_product_box_wishlist_action %}
+                                    {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+                                        appearance: 'circle',
+                                        productId: id
+                                    } %}
+                                {% endblock %}
+                            {% endif %}
+
+                        </div>
+                    {% endblock %}
+
+                    {% block component_product_box_info %}
+                        <div class="product-info">
+                        
+                            <div class="product-box-rating-block">
+                                
+                                {% block component_product_badges_topseller %}
+                                    {% if product.markAsTopseller %}
+                                        <div>
+                                            {# <span class="badge badge-warning badge-topseller">{{ "listing.boxLabelTopseller"|trans|sw_sanitize }}</span> #}
+                                            <p class="product-box-best-seller">Bestes angebot</p>
+                                        </div>
+                                        {% else %}
+                                        <p class="product-box-best-seller"></p>
+                                    {% endif %}
+                                {% endblock %}
+                                <div class="product-block-rating">
+                                {% if product.ratingAverage %}
+                                    <span class="product-box-rating-star"> 
+                                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.99997 10.3333L3.08131 12.7266L4.14664 8.25996L0.659973 5.27329L5.23664 4.90663L6.99997 0.666626L8.76331 4.90663L13.3406 5.27329L9.85331 8.25996L10.9186 12.7266L6.99997 10.3333Z" fill="#252526"/>
+                                        </svg>
+                                    </span>
+                                {% endif %}
+                                {% if product.ratingAverage %}
+                                <span class="product-box-rating-count">{{product.ratingAverage}},0</span>
+                                {% endif %}
+                                </div>
+                            </div>
+                            {# {% block component_product_box_rating %}
+                                {% if config('core.listing.showReview') %}
+                                    <div class="product-rating">
+                                        {% if product.ratingAverage %}
+                                            {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                                points: product.ratingAverage,
+                                                style: 'text-primary'
+                                            } %}
+                                        {% endif %}
+                                        
+                                    </div>
+                                {% endif %}
+                            {% endblock %} #}
+                            
+
+                            {% block component_product_box_name %}
+                                <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                   class="product-name"
+                                   title="{{ name }}">
+                                    {{ name }}
+                                </a>
+                            {% endblock %}
+
+                            {# {% block component_product_box_variant_characteristics %}
+                                <div class="product-variant-characteristics">
+                                    <div class="product-variant-characteristics-text">
+                                        {% for variation in product.variation %}
+                                            {{ variation.group }}:
+                                            <span class="product-variant-characteristics-option">
+                                                {{ variation.option }}
+                                            </span>
+
+                                            {% if product.variation|last != variation %}
+                                                {{ " | " }}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endblock %} #}
+
+                            {% block component_product_box_description %}
+                                <div class="product-description">
+                                    {{ product.translated.description|striptags|raw }}
+                                </div>
+                            {% endblock %}
+
+                            <div class="product-price-btn-buy-block">
+                                {% block component_product_box_price %}
+                                    {% sw_include '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+                                {% endblock %}
+
+                                {% block component_product_box_action %}
+                                    {% sw_include '@Storefront/storefront/component/product/card/action.html.twig' %}
+                                {% endblock %}
+                            </div>
+                            
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% block block_text_hero %}
+    {% set element = block.slots.getSlot('content') %}
+    {% set columns = 1 %}
+    
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+        {# {% block block_text_hero_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %} #}
+        <h1 class="listing-cat-title">{{ page.metaInformation.metaTitle }}<h1>
+    </div>
+    <style>
+        .listing-cat-title {
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 48px;
+            text-align: center;
+            letter-spacing: 0.0025em;
+            color: #252526;
+            padding: 24px 0px 32px 0px;
+            border-bottom: 1px solid #E4E4E6; 
+            margin-bottom: 32px;       
+        }
+    </style>
+{% endblock %} 

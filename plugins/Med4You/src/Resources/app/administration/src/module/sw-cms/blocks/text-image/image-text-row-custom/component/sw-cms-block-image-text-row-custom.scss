@@ -1,0 +1,27 @@
+.sw-cms-block-image-text-row-custom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+    align-content: stretch;
+    align-items: start;
+    grid-gap: 40px;
+    grid-template-areas:
+        "my-section1 my-section2"
+        "my-section1 my-section3";
+
+    .sw-cms-el-text {
+        padding-top: 20px;
+    }
+
+    .sw-cms-el-image.is--cover {
+        min-height: 200px;
+    }
+    .sw-cms-block-image-text-row__left {
+        grid-area: my-section1;
+    }
+    .sw-cms-block-image-text-row__center {
+        grid-area: my-section2;
+    }
+    .sw-cms-block-image-text-row__right {
+        grid-area: my-section3;
+    }
+}

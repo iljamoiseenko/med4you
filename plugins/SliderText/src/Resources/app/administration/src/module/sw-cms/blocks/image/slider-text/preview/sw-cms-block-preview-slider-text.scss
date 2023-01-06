@@ -1,0 +1,35 @@
+.sw-cms-preview-image-slider {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    grid-gap: 5px;
+    position: relative;
+
+    img {
+        margin: 0;
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .slider-preview-text-block {
+        position: absolute;
+        top: 30px;
+        left: 40px;
+        .slider-preview-text-block-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .slider-preview-text-block-sub-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .slider-preview-text-block-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background: #F07939;
+            color: #252526;
+        }
+    }
+}

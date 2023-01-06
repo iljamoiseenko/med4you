@@ -1,0 +1,326 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+
+{% block page_product_detail_tabs_inner %}
+    <div class="card card-tabs">
+        {% block page_product_detail_tabs_navigation %}
+            <div class="card-header product-detail-tab-navigation">
+                {% block page_product_detail_tabs_navigation_container %}
+                    {# <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                        id="product-detail-tabs"
+                        role="tablist">
+                        {% block page_product_detail_tabs_navigation_description %}
+                        
+                            <li class="nav-item">
+                                <a class="nav-link {% if (ratingSuccess != 1) and (ratingSuccess != -1) %}active{% endif %} product-detail-tab-navigation-link"
+                                   id="description-tab"
+                                   {{ dataBsToggleAttr }}="tab"
+                                   data-offcanvas-tabs="true"
+                                   href="#description-tab-pane"
+                                   role="tab"
+                                   aria-controls="description-tab-pane"
+                                   aria-selected="true">
+                                    <span>{{ "detail.tabsDescription"|trans|sw_sanitize }}</span>
+                                    <span class="product-detail-tab-navigation-icon">
+                                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                    </span>
+                                    {% if page.product.translated.description|length > 0 %}
+                                        <span class="product-detail-tab-preview">
+                                            {{ page.product.translated.description|raw|striptags|sw_sanitize|u.truncate(125, '…') }} #}
+
+                                            {# truncate always cuts down the length to 125 characters.
+                                               So it will only shorten the string if it exceeds 125 chars.
+                                               Therefor, only show the button when the length of the text is
+                                               greater or equal then 126 characters. #}
+                                            {# {% if page.product.translated.description|length >= 126 %}
+                                                <span class="product-detail-tab-preview-more">{{ "detail.tabsPreviewMore"|trans|sw_sanitize }}</span>
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+                                </a>
+                            </li>
+
+
+                        {% endblock %}
+                        {% block page_product_detail_tabs_navigation_review %}
+                            {% if config('core.listing.showReview') %}
+                                <li class="nav-item">
+                                    <a class="nav-link {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %} product-detail-tab-navigation-link"
+                                       id="review-tab"
+                                       {{ dataBsToggleAttr }}="tab"
+                                       data-offcanvas-tabs="true"
+                                       href="#review-tab-pane"
+                                       role="tab"
+                                       aria-controls="review-tab-pane"
+                                       aria-selected="true">
+                                        {{ "detail.tabsReview"|trans|sw_sanitize }}
+                                        <span class="product-detail-tab-navigation-icon">
+                                            {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endblock %}
+
+                    </ul> #}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block page_product_detail_tabs_content %}
+            {# <div class="product-detail-tabs-content card-body">
+                {% block page_product_detail_tabs_content_container %}
+                    <div class="tab-content">
+                        {% block page_product_detail_tabs_content_description %}
+                            <div class="tab-pane fade show {% if (ratingSuccess != 1) and (ratingSuccess != -1) %}active{% endif %}"
+                                 id="description-tab-pane"
+                                 role="tabpanel"
+                                 aria-labelledby="description-tab">
+                                {% sw_include '@Storefront/storefront/page/product-detail/description.html.twig' %}
+                            </div>
+                        {% endblock %}
+
+                                          
+                    </div>
+            {% endblock %}
+            </div> #}
+            <section class="product-tabs-wrapper">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    {% if page.product.customFields.custom_product_tabs_details %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#tab1" type="button" role="tab" aria-controls="home" aria-selected="true">Einzelheiten</button>
+                        </li>
+                    {% endif %}
+                    {% if page.product.customFields.custom_product_tabs_description %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#tab2" type="button" role="tab" aria-controls="profile" aria-selected="false">Beschreibung</button>
+                        </li>
+                    {% endif %}
+                    {% if page.product.customFields.custom_product_tabs_advantages %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#tab3" type="button" role="tab" aria-controls="contact" aria-selected="false">Vorteile</button>
+                        </li>
+                    {% endif %}
+                    {% if page.product.customFields.custom_product_tabs_warranty %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#tab4" type="button" role="tab" aria-controls="contact" aria-selected="false">Garantieinformationen</button>
+                        </li>
+                    {% endif %}
+                    {% if page.product.customFields.custom_product_tabs_how_to_use %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#tab5" type="button" role="tab" aria-controls="contact" aria-selected="false">Wie benutzt man</button>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-content-block">{{page.product.customFields.custom_product_tabs_details | raw}}</div>
+                        <button id="btn-show1">Weiterlesen</button> 
+                    </div>
+
+                    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-content-block">{{page.product.customFields.custom_product_tabs_description | raw}}</div>
+                        <button id="btn-show2">Weiterlesen</button> 
+                    </div>
+
+                    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-content-block">{{page.product.customFields.custom_product_tabs_advantages | raw}}</div>
+                        <button id="btn-show3">Weiterlesen</button> 
+                    </div>
+
+                    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-content-block">{{page.product.customFields.custom_product_tabs_warranty | raw}}</div>
+                        <button id="btn-show4">Weiterlesen</button> 
+                    </div>
+
+                    <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-content-block">{{page.product.customFields.custom_product_tabs_how_to_use | raw}}</div>
+                        <button id="btn-show5">Weiterlesen</button> 
+                    </div>
+
+                </div>
+            </section>
+
+
+            <div class="product-review-wrapper">
+                <div class="product-review-title-block">
+                    <h3 class="product-rewiev-title">Bewertungen</h3>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    Eine Rezension hinterlassen
+                    </button>
+                </div>
+                
+               <div class="review-content-block">
+                    {% sw_include '@Storefront/storefront/page/product-detail/review/review.html.twig' with {'reviews': page.reviews} %}
+               </div>
+
+                {# <div class="input-password"> #}
+
+                {# <input type="password" value="FakePSW" id="myInput" onclick="myFunction()"> #}
+                
+                {# </div> #}
+               
+
+                
+
+                    
+                
+                {# {% block page_product_detail_review_form_teaser_button %}
+                    <button class="btn btn-primary product-detail-review-teaser-btn"
+                            type="button"
+                            {{ dataBsToggleAttr }}="collapse"
+                            {{ dataBsTargetAttr }}=".multi-collapse"
+                            aria-expanded="false"
+                            aria-controls="review-form review-list"
+                            data-toggle="modal" data-target="#exampleModalLong">
+                            <span class="product-detail-review-teaser-show">
+                                {% if not reviews.customerReview %}
+                                    {{ "detail.reviewTeaserButton"|trans|sw_sanitize }}
+                                {% else %}
+                                    {{ "detail.reviewExistsTeaserButton"|trans|sw_sanitize }}
+                                {% endif %}
+                            </span>
+                            <span class="product-detail-review-teaser-hide">
+                                {{ "detail.reviewTeaserButtonHide"|trans|sw_sanitize }}
+                            </span>
+                    </button>
+                {% endblock %} #}
+
+
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"                               aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.99999 5.58623L11.95 0.63623L13.364 2.05023L8.41399 7.00023L13.364 11.9502L11.95 13.3642L6.99999 8.41423L2.04999 13.3642L0.635986 11.9502L5.58599 7.00023L0.635986 2.05023L2.04999 0.63623L6.99999 5.58623Z" fill="#252526"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="modal-body">
+                                {% sw_include '@Storefront/storefront/page/product-detail/review/review.html.twig' with {'reviews': page.reviews} %}
+
+
+                                {% block page_product_detail_review_alert %}
+								{% if ratingSuccess == 1 %}
+									{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+										type: "success",
+										content: "detail.reviewFormSuccessAlert"|trans|sw_sanitize
+									} %}
+                                    
+                                {% elseif ratingSuccess == 2  %}
+                                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                        type: "success",
+                                        content: "detail.reviewFormSuccessUpdateAlert"|trans|sw_sanitize
+                                    } %}
+								{% elseif ratingSuccess == -1  %}
+									{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+										type: "danger",
+										content: "detail.reviewFormErrorAlert"|trans|sw_sanitize
+									} %}
+								{% endif %}
+							{% endblock %}
+                            </div>
+                            {# <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div> #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+           <script>
+           {#
+            let BlockContent = document.getElementsByClassName('tab-content-block');
+            #}
+                
+                let BlockContent = document.getElementById('myTabContent');
+                let BtnShow = document.getElementsByClassName('btn-show');
+                let btn1 = document.getElementById('tab1');
+                let btn2 = document.getElementById('tab2');
+                let btn3 = document.getElementById('tab3');
+                let btn4 = document.getElementById('tab4');
+                let btn5 = document.getElementById('tab5');
+                let btnShow1 = document.getElementById('btn-show1');
+                let btnShow2 = document.getElementById('btn-show2');
+                let btnShow3 = document.getElementById('btn-show3');
+                let btnShow4 = document.getElementById('btn-show4');
+                let btnShow5 = document.getElementById('btn-show5'); 
+                
+                if (btn1.clientHeight > 398) {
+                    btnShow1.classList.add('active-tabs-btn');
+                    btn1.classList.add('active-blur')
+                }
+                if (btn2.clientHeight > 398) {
+                    btnShow2.classList.add('active-tabs-btn');
+                    btn2.classList.add('active-blur')
+                }
+                if (btn3.clientHeight > 398) {
+                    btnShow3.classList.add('active-tabs-btn');
+                    btn3.classList.add('active-blur')
+                }
+                if (btn4.clientHeight > 398) {
+                    btnShow4.classList.add('active-tabs-btn');
+                    btn4.classList.add('active-blur')
+                }
+                if (btn5.clientHeight > 398) {
+                    btnShow5.classList.add('active-tabs-btn');
+                    btn5.classList.add('active-blur')
+                }
+                
+                btnShow1.onclick = function() {
+                    btn1.classList.toggle('show-all')
+                    if (btn1.classList.contains('show-all')) {
+                        btnShow1.textContent = 'Lese weniger';
+                    }
+                    else {
+                        btnShow1.textContent = 'Weiterlesen';
+                    }        
+                }
+                btnShow2.onclick = function() {
+                    btn2.classList.toggle('show-all')
+                    if (btn2.classList.contains('show-all')) {
+                        btnShow2.textContent = 'Lese weniger';
+                    }
+                    else {
+                        btnShow2.textContent = 'Weiterlesen';
+                    }        
+                }
+                btnShow3.onclick = function() {
+                    btn3.classList.toggle('show-all')
+                    if (btn3.classList.contains('show-all')) {
+                        btnShow3.textContent = 'Lese weniger';
+                    }
+                    else {
+                        btnShow3.textContent = 'Weiterlesen';
+                    }        
+                }
+                btnShow4.onclick = function() {
+                    btn4.classList.toggle('show-all')
+                    if (btn4.classList.contains('show-all')) {
+                        btnShow4.textContent = 'Lese weniger';
+                    }
+                    else {
+                        btnShow4.textContent = 'Weiterlesen';
+                    }        
+                }
+                btnShow5.onclick = function() {
+                    btn5.classList.toggle('show-all')
+                    if (btn5.classList.contains('show-all')) {
+                        btnShow5.textContent = 'Lese weniger';
+                    }
+                    else {
+                        btnShow5.textContent = 'Weiterlesen';
+                    }  
+                }
+
+           </script>
+
+
+        {% endblock %}
+
+    </div>
+{% endblock %}

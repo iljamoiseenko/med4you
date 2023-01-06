@@ -1,0 +1,172 @@
+@media (max-width: 1240px) {
+    .header-main {
+        .container {
+            padding: 0 20px;
+            .header-actions-col {
+                margin-left: auto;
+            }
+            .header-search-col {
+                width: 100%;
+                .header-search {
+                    min-width: auto;
+                }
+            }
+        }
+    }
+    .nav-main {
+        .main-navigation {
+            padding: 0 20px;
+        }
+    }
+    .header-search {
+        .header-search-input {
+            min-width: auto;
+        }
+    }
+}   
+
+@media (max-width: 994px) {    
+    .d-sm-block {
+        display: none!important;
+    }
+    .cart-offcanvas {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 868px) {
+    .header-main {
+        .header-wrapper {
+            flex-wrap: wrap;
+            .header-actions-col {
+                width: 100%;
+                .no-gutters {
+                    justify-content: space-between;
+                }
+                
+            }
+            .header-logo-col {
+                width: 25%;
+            }
+            .header-search-col {
+                width: 75%;
+                margin-left: auto;
+                .header-search-block {
+                    display: flex;
+                }
+                
+            }
+            .header-search-layout {
+                width: 100%;
+                .header-search {
+                    min-width: 100%;
+                }
+            }
+            .d-sm-block {
+                display: block!important;
+                order: 2;
+            }
+        }
+    }
+    .account-menu-offcanvas {
+        min-width: auto;
+        .account-list-item-block {
+            .list-group-item {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.005em;
+                color: #7A7A7C;
+
+            }
+            .account-icon {
+                margin-right: 20px;
+            }
+        }
+        .account-menu-login {
+            .account-menu-login-button {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0125em;
+                color: #FFFFFF;
+                background: #195D59;
+                border-radius: 4px;
+                padding: 10px 0;
+                border: none;
+            }
+            .account-menu-register {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 0.0025em;
+                color: #252526;
+
+                a {
+                    color: #195D59;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .header-minimal .header-minimal-row {
+        padding: 22px 20px;
+    }
+
+    // wishlist page
+    .cms-element-product-listing {
+        .js-listing-wrapper {
+            .listing-product-box {
+                width: 100%;
+            }
+        }
+    }
+    
+
+    .header-main {
+        .header-wrapper {
+            flex-wrap: nowrap;
+            .header-search-col {
+                .header-search-layout {
+                    .collapse, .collapsing {
+                        position: absolute;
+                        z-index: 100;
+                        top: 68px;
+                    }
+                }
+            }
+            .header-actions-col {
+                .header-phone-block, .top-bar-language, .menu-button {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 424px) {
+    .header-main {
+        .header-wrapper {
+            flex-wrap: wrap;
+            .header-search-block {
+                .nav-main-toggle {
+                    display: flex;
+                    justify-content: end;
+                }
+                .d-sm-block {
+                    padding: 0;
+                }
+            }
+            .header-actions-col {
+                .col {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+

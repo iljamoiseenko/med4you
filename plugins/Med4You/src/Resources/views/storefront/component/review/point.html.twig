@@ -1,0 +1,71 @@
+{% sw_extends '@Storefront/storefront/component/review/point.html.twig' %}
+
+{% block component_review_point %}
+    {% if size is not defined %}
+        {% set size = 'xs' %}
+    {% endif %}
+
+    {# @deprecated tag:v6.5.0 - span will be a div #}
+    {% if feature('v6.5.0.0') %}
+        <div class="product-review-point">
+    {% else %}
+        <span class="product-review-point">
+    {% endif %}
+        {% if type == 'half' %}
+            <div class="point-container">
+                <div class="point-rating point-partial-placeholder">
+                    {% sw_icon 'star' style { 'color': 'light', 'size': size, 'pack': 'solid' } %}
+                    {# <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.99999 15L4.12199 18.59L5.71999 11.89L0.48999 7.41L7.35499 6.86L9.99999 0.5L12.645 6.86L19.511 7.41L14.28 11.89L15.878 18.59L9.99999 15ZM9.99999 12.656L12.817 14.376L12.051 11.166L14.558 9.019L11.268 8.755L9.99999 5.708L8.73199 8.755L5.44199 9.019L7.94899 11.166L7.18299 14.376L9.99999 12.657V12.656Z" fill="#195D59"/>
+                    </svg> #}
+                    {# <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 24.3465L6.59599 29.6105L8.69599 19.0398L0.782654 11.7225L11.4853 10.4532L16 0.666504L20.5147 10.4532L31.2173 11.7225L23.304 19.0398L25.404 29.6105L16 24.3465ZM16 21.2905L21.6627 24.4598L20.3973 18.0958L25.1613 13.6892L18.7173 12.9252L16 7.03317L13.2827 12.9265L6.83865 13.6892L11.6027 18.0958L10.3373 24.4598L16 21.2905Z" fill="#F07939"/>
+                    </svg> #}
+                </div>
+                <div class="point-rating point-partial" style="clip-path: inset(0 {{ (1 - left) * 100 }}% 0 0)">
+                    {# {% sw_icon 'star' style { 'color': 'review', 'size': size, 'pack': 'solid' } %}  #} 555
+                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.99997 10.3333L3.08131 12.7267L4.14664 8.25999L0.659973 5.27332L5.23664 4.90666L6.99997 0.666656L8.76331 4.90666L13.3406 5.27332L9.85331 8.25999L10.9186 12.7267L6.99997 10.3333Z" fill="#195D59"/>
+                    </svg>
+                                         {# <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9999 19.6668L5.16261 24.4535L7.29328 15.5202L0.319946 9.54683L9.47328 8.81349L12.9999 0.333496L16.5266 8.81349L25.6813 9.54683L18.7066 15.5202L20.8373 24.4535L12.9999 19.6668Z" fill="#F07939"/>
+</svg> #}
+                </div>
+            </div>
+        {% elseif type == 'blank' %}
+            <div class="point-container">
+                <div class="point-rating point-blank">
+
+                    {# {% sw_icon 'star' style { 'size': size, 'pack': 'solid' } %} #}
+                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.99999 15L4.12199 18.59L5.71999 11.89L0.48999 7.41L7.35499 6.86L9.99999 0.5L12.645 6.86L19.511 7.41L14.28 11.89L15.878 18.59L9.99999 15ZM9.99999 12.656L12.817 14.376L12.051 11.166L14.558 9.019L11.268 8.755L9.99999 5.708L8.73199 8.755L5.44199 9.019L7.94899 11.166L7.18299 14.376L9.99999 12.657V12.656Z" fill="#195D59"/>
+                    </svg>
+                    {# <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9999 19.6668L5.16261 24.4535L7.29328 15.5202L0.319946 9.54683L9.47328 8.81349L12.9999 0.333496L16.5266 8.81349L25.6813 9.54683L18.7066 15.5202L20.8373 24.4535L12.9999 19.6668Z" fill="#F07939"/>
+</svg>  #}
+
+
+                    {# <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 24.3465L6.59605 29.6105L8.69605 19.0398L0.782715 11.7225L11.4854 10.4532L16 0.666504L20.5147 10.4532L31.2174 11.7225L23.304 19.0398L25.404 29.6105L16 24.3465ZM16 21.2905L21.6627 24.4598L20.3974 18.0958L25.1614 13.6892L18.7174 12.9252L16 7.03317L13.2827 12.9265L6.83871 13.6892L11.6027 18.0958L10.3374 24.4598L16 21.2905V21.2905Z" fill="#F07939"/>
+                    </svg> #}
+                   
+                </div>
+            </div>
+        {% else %}
+            <div class="point-container">
+                <div class="point-rating point-full">
+                    {# {% sw_icon 'star' style { 'color': 'review', 'size': size, 'pack': 'solid' } %} #}
+                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.99997 10.3333L3.08131 12.7267L4.14664 8.25999L0.659973 5.27332L5.23664 4.90666L6.99997 0.666656L8.76331 4.90666L13.3406 5.27332L9.85331 8.25999L10.9186 12.7267L6.99997 10.3333Z" fill="#195D59"/>
+                    </svg>
+
+                </div>
+            </div>
+        {% endif %}
+    {# @deprecated tag:v6.5.0 - span will be a div #}
+    {% if feature('v6.5.0.0') %}
+        </div>
+    {% else %}
+        </span>
+        {% endif %}
+{% endblock %}

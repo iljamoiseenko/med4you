@@ -1,0 +1,142 @@
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{% block page_account_sidebar_inner %}
+    <div class="{% if not headerWidget %}account-aside{% else %}header-account-menu{% endif %}">
+        <div class="card account-menu-inner 909009">
+            {# {% block page_account_sidebar_header %}
+                {% if not headerWidget %}
+                    <div class="card-header account-aside-header">
+                        {{ "account.greetings"|trans|sw_sanitize }}
+                        {{ context.customer.title }}
+                        {{ context.customer.firstName }}
+                        {{ context.customer.lastName }}
+                    </div>
+                {% endif %}
+            {% endblock %} #}
+
+            {% block page_account_sidebar_menu %}
+                {% if not context.customer.guest %}
+                    <div class="list-group list-group-flush account-aside-list-group">
+                        {% block page_account_sidebar_menu_inner %}
+                            {# {% block page_account_sidebar_link_home %}
+                                <div class="account-list-item-block">
+                                    
+                                    <a href="{{ path('frontend.account.home.page') }}"
+                                    title="{{ "account.overviewLink"|trans|striptags }}"
+                                    class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.home.page') %} is-active{% endif %}">
+                                    <span class="account-icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 8C6.9 8 5.95833 7.60833 5.175 6.825C4.39167 6.04167 4 5.1 4 4C4 2.9 4.39167 1.95833 5.175 1.175C5.95833 0.391667 6.9 0 8 0C9.1 0 10.0417 0.391667 10.825 1.175C11.6083 1.95833 12 2.9 12 4C12 5.1 11.6083 6.04167 10.825 6.825C10.0417 7.60833 9.1 8 8 8ZM0 16V13.2C0 12.6333 0.146 12.1123 0.438 11.637C0.729334 11.1623 1.11667 10.8 1.6 10.55C2.63333 10.0333 3.68333 9.64567 4.75 9.387C5.81667 9.129 6.9 9 8 9C9.1 9 10.1833 9.129 11.25 9.387C12.3167 9.64567 13.3667 10.0333 14.4 10.55C14.8833 10.8 15.2707 11.1623 15.562 11.637C15.854 12.1123 16 12.6333 16 13.2V16H0ZM2 14H14V13.2C14 13.0167 13.9543 12.85 13.863 12.7C13.771 12.55 13.65 12.4333 13.5 12.35C12.6 11.9 11.6917 11.5623 10.775 11.337C9.85833 11.1123 8.93333 11 8 11C7.06667 11 6.14167 11.1123 5.225 11.337C4.30833 11.5623 3.4 11.9 2.5 12.35C2.35 12.4333 2.22933 12.55 2.138 12.7C2.046 12.85 2 13.0167 2 13.2V14ZM8 6C8.55 6 9.021 5.804 9.413 5.412C9.80433 5.02067 10 4.55 10 4C10 3.45 9.80433 2.97933 9.413 2.588C9.021 2.196 8.55 2 8 2C7.45 2 6.97933 2.196 6.588 2.588C6.196 2.97933 6 3.45 6 4C6 4.55 6.196 5.02067 6.588 5.412C6.97933 5.804 7.45 6 8 6Z" fill="#252526"/>
+                                        </svg>
+                                    </span>
+                                        {{ "account.overviewLink"|trans|sw_sanitize }}
+                                    </a>
+                                </div>
+                            {% endblock %} #}
+
+                            {% block page_account_sidebar_link_profile %}
+                                <div class="account-list-item-block">
+                                    
+
+                                    <a href="{{ path('frontend.account.profile.page') }}"
+                                    title="{{ "account.profileLink"|trans|striptags }}"
+                                    class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.profile.page') %} is-active{% endif %}">
+                                    <span class="account-icon">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 8C6.9 8 5.95833 7.60833 5.175 6.825C4.39167 6.04167 4 5.1 4 4C4 2.9 4.39167 1.95833 5.175 1.175C5.95833 0.391667 6.9 0 8 0C9.1 0 10.0417 0.391667 10.825 1.175C11.6083 1.95833 12 2.9 12 4C12 5.1 11.6083 6.04167 10.825 6.825C10.0417 7.60833 9.1 8 8 8ZM0 16V13.2C0 12.6333 0.146 12.1123 0.438 11.637C0.729334 11.1623 1.11667 10.8 1.6 10.55C2.63333 10.0333 3.68333 9.64567 4.75 9.387C5.81667 9.129 6.9 9 8 9C9.1 9 10.1833 9.129 11.25 9.387C12.3167 9.64567 13.3667 10.0333 14.4 10.55C14.8833 10.8 15.2707 11.1623 15.562 11.637C15.854 12.1123 16 12.6333 16 13.2V16H0ZM2 14H14V13.2C14 13.0167 13.9543 12.85 13.863 12.7C13.771 12.55 13.65 12.4333 13.5 12.35C12.6 11.9 11.6917 11.5623 10.775 11.337C9.85833 11.1123 8.93333 11 8 11C7.06667 11 6.14167 11.1123 5.225 11.337C4.30833 11.5623 3.4 11.9 2.5 12.35C2.35 12.4333 2.22933 12.55 2.138 12.7C2.046 12.85 2 13.0167 2 13.2V14ZM8 6C8.55 6 9.021 5.804 9.413 5.412C9.80433 5.02067 10 4.55 10 4C10 3.45 9.80433 2.97933 9.413 2.588C9.021 2.196 8.55 2 8 2C7.45 2 6.97933 2.196 6.588 2.588C6.196 2.97933 6 3.45 6 4C6 4.55 6.196 5.02067 6.588 5.412C6.97933 5.804 7.45 6 8 6Z" fill="#252526"/>
+                                        </svg>
+                                    </span>
+                                        {{ "account.profileLink"|trans|sw_sanitize }}
+                                    </a>
+                                </div>
+                            {% endblock %}
+
+                            {% block page_account_sidebar_link_address %}
+                                <div class="account-list-item-block">
+                                    
+
+                                    <a href="{{ path('frontend.account.address.page') }}"
+                                    title="{{ "account.addressLink"|trans|striptags }}"
+                                    class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.address.page') %} is-active{% endif %}">
+                                    <span class="account-icon">
+                                        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 14.475C8.65 13.1417 9.896 11.8583 10.738 10.625C11.5793 9.39167 12 8.23333 12 7.15C12 6.21667 11.8293 5.42067 11.488 4.762C11.146 4.104 10.725 3.57067 10.225 3.162C9.725 2.754 9.18333 2.45833 8.6 2.275C8.01667 2.09167 7.48333 2 7 2C6.51667 2 5.98333 2.09167 5.4 2.275C4.81667 2.45833 4.275 2.754 3.775 3.162C3.275 3.57067 2.85433 4.104 2.513 4.762C2.171 5.42067 2 6.21667 2 7.15C2 8.23333 2.42067 9.39167 3.262 10.625C4.104 11.8583 5.35 13.1417 7 14.475ZM7 17C4.65 15.2667 2.89567 13.5833 1.737 11.95C0.579 10.3167 0 8.71667 0 7.15C0 5.96667 0.212667 4.929 0.638 4.037C1.06267 3.14567 1.60833 2.4 2.275 1.8C2.94167 1.2 3.69167 0.75 4.525 0.45C5.35833 0.15 6.18333 0 7 0C7.81667 0 8.64167 0.15 9.475 0.45C10.3083 0.75 11.0583 1.2 11.725 1.8C12.3917 2.4 12.9377 3.14567 13.363 4.037C13.7877 4.929 14 5.96667 14 7.15C14 8.71667 13.4207 10.3167 12.262 11.95C11.104 13.5833 9.35 15.2667 7 17ZM7 9C7.55 9 8.021 8.804 8.413 8.412C8.80433 8.02067 9 7.55 9 7C9 6.45 8.80433 5.979 8.413 5.587C8.021 5.19567 7.55 5 7 5C6.45 5 5.97933 5.19567 5.588 5.587C5.196 5.979 5 6.45 5 7C5 7.55 5.196 8.02067 5.588 8.412C5.97933 8.804 6.45 9 7 9ZM0 20V18H14V20H0Z" fill="#7A7A7C"/>
+                                        </svg>
+                                    </span>
+                                        {{ "account.addressLink"|trans|sw_sanitize }}
+                                    </a>
+                                </div>
+                            {% endblock %}
+
+                            {% block page_account_sidebar_link_payment %}
+                                <div class="account-list-item-block">
+                                    
+                                    
+                                    <a href="{{ path('frontend.account.payment.page') }}"
+                                    title="{{ "account.paymentLink"|trans|striptags }}"
+                                    class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.payment.page') %} is-active{% endif %}">
+                                    <span class="account-icon">
+                                        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 2V14C20 14.55 19.8043 15.021 19.413 15.413C19.021 15.8043 18.55 16 18 16H2C1.45 16 0.979333 15.8043 0.588 15.413C0.196 15.021 0 14.55 0 14V2C0 1.45 0.196 0.979333 0.588 0.588C0.979333 0.196 1.45 0 2 0H18C18.55 0 19.021 0.196 19.413 0.588C19.8043 0.979333 20 1.45 20 2ZM2 4H18V2H2V4ZM2 8V14H18V8H2Z" fill="#7A7A7C"/>
+                                        </svg>
+                                    </span>
+                                        {{ "account.paymentLink"|trans|sw_sanitize }}
+                                    </a>
+                                </div>
+                            {% endblock %}
+
+                            {% block page_account_sidebar_link_orders %}
+                                <div class="account-list-item-block">
+                                    
+                           
+                                    <a href="{{ path('frontend.account.order.page') }}"
+                                    title="{{ "account.ordersLink"|trans|striptags }}"
+                                    class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.order.page') %} is-active{% endif %}">
+                                    <span class="account-icon">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14H11V12H4V14ZM4 10H14V8H4V10ZM4 6H14V4H4V6ZM2 18C1.45 18 0.979 17.8043 0.587 17.413C0.195667 17.021 0 16.55 0 16V2C0 1.45 0.195667 0.979 0.587 0.587C0.979 0.195667 1.45 0 2 0H16C16.55 0 17.021 0.195667 17.413 0.587C17.8043 0.979 18 1.45 18 2V16C18 16.55 17.8043 17.021 17.413 17.413C17.021 17.8043 16.55 18 16 18H2ZM2 16H16V2H2V16Z" fill="#7A7A7C"/>
+                                        </svg>
+                                    </span>
+                                        {{ "account.ordersLink"|trans|sw_sanitize }}
+                                    </a>
+                                </div>
+                            {% endblock %}
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block page_account_sidebar_footer %}
+                {% if context.customer %}
+                    {% if not context.customer.guest %}
+                        <div class="card-footer account-aside-footer">
+                            {% block page_account_sidebar_logout %}
+                                <a href="{{ path('frontend.account.logout.page') }}"
+                                   class="btn btn-link account-aside-btn">
+                                    {# {% sw_icon 'log-out' %} #}
+                                    <span>
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.33333 12C0.966667 12 0.652667 11.8696 0.391333 11.6087C0.130444 11.3473 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130444 0.652667 0.391333 0.391333C0.652667 0.130444 0.966667 0 1.33333 0H6V1.33333H1.33333V10.6667H6V12H1.33333ZM8.66667 9.33333L7.75 8.36667L9.45 6.66667H4V5.33333H9.45L7.75 3.63333L8.66667 2.66667L12 6L8.66667 9.33333Z" fill="#195D59"/>
+                                        </svg>
+                                    </span>
+                                    {{ "account.logout"|trans|sw_sanitize }}
+                                </a>
+                            {% endblock %}
+                        </div>
+                    {% else %}
+                        <div class="card-footer account-aside-footer account-guest-abort">
+                            {% block page_account_sidebar_guest_abort %}
+                                <a href="{{ path('frontend.account.logout.page') }}"
+                                   data-account-guest-abort-button="true"
+                                   class="btn btn-link account-aside-btn">
+                                    {% sw_icon 'log-out' %}
+                                    {{ "account.guestAbort"|trans|sw_sanitize }}
+                                </a>
+                            {% endblock %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

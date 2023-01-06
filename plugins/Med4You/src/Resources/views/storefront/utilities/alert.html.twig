@@ -1,0 +1,266 @@
+{% sw_extends '@Storefront/storefront/utilities/alert.html.twig' %}
+
+
+{#
+Global messages template
+
+https://getbootstrap.com/docs/4.3/components/alerts/
+
+*Type:
+The template provides an easy way to display messages in the storefront. The following types are supported:
+
+* primary
+* secondary
+* danger (red)
+* success (green)
+* warning (yellow)
+* info (blue)
+* light (white)
+* dark (dark gray)
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor"
+    } %}
+
+*Icons:
+Icons are shown by default. To hide the icon within the alert, set the value of "icon" to false:
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        icon: false
+    } %}
+
+*Message Content:
+The component requires the parameters ```content``` or ```list``` to display a message. If no ```type``` is defined it
+will use the fallback option (success).
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor"
+    } %}
+
+*Message List:
+If you need to display a bunch of messages (for example error messages in the registration), you can pass an array
+of messages to the template using the parameter ```list```:
+
+     {% set list1 = [
+        'Error message 1',
+        'Error message 2',
+        'Error message 3'
+    ] %}
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"secondary",
+        list: list1
+    } %}
+
+*Heading:
+To display a heading, use "heading".
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        heading: "Test Heading"
+    } %}
+
+*Dismissible Button:
+To display a dismissible button set the value of "dismissible" to true.
+
+    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+        type:"primary",
+        content:"Primary Lorem ipsum dolor",
+        dismissible: true
+    } %}
+
+#}
+
+{% block utilities_alert %}
+    <div role="alert"
+         class="alert {% if type %}alert-{{ type }}{% endif %}{% if dismissible %} alert-dismissible fade show{% endif %}{% if icon != "error" %} alert-has-icon{% endif %}">
+        {% block utilities_alert_icon %}
+            {% if icon != "false" %}
+                {% if type == "danger" %}
+                    {% sw_icon 'blocked' %}
+                {% elseif type == "warning" %}
+                    {% sw_icon 'warning' %}
+                {% elseif type == "info" %}
+                    {% sw_icon 'info' %}
+                {% elseif type == "success" %}
+                    {% sw_icon 'checkmark-circle' %}
+                {% else %}
+                    {% sw_icon 'alert' %}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+
+        {% block utilities_alert_content_container %}
+            <div class="alert-content-container 999">
+                
+                {% block utilities_alert_heading %}
+                    {% if heading %}
+                        <div class="alert-heading h5">
+                            {{ heading }}
+                        </div>
+                    {% endif %}
+
+                    {% if type == "success" %}
+                        <h4 class="success-block-title">Vielen Dank für Ihre Bewertung</h4>
+                        <div class="icon-succes">
+                            <img src="{{ asset('bundles/med4you/success.png', 'asset') }}" class="success-block-icon"/>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% block utilities_alert_content %}
+                    {% if type == "success" %}
+                        <p class="alert-success-text-custom">Ihre Bewertung wurde übermittelt.</p>
+                        <div class="success-block-btn">
+                            <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Fertig</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Siehe Ihre Bewertung</button>
+                        </div>
+                    {% else %}
+                    <div class="alert-content">
+                    аааа
+                        {% if list|length > 1 %}
+                       
+                            <ul class="alert-list">
+                                {% for entry in list %}
+                                    <li>{{ entry|sw_sanitize }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% elseif list|length == 1 %}
+                            {% for entry in list %}
+                                {{ entry|sw_sanitize }}
+                            {% endfor %}
+                        {% else %}
+                            {{ content|sw_sanitize }}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                {% endblock %}
+
+                {# ////////// #}
+
+                {% if type == "info" %}
+                <h3 class="checkout-alert-page-title">Einkaufswagen</h3>
+                        <div class="empty-cart-block">
+                        <div class="empty-cart-icon-block">
+                            <span class="empty-cart-icon">
+
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_i_1037_4589)">
+                                <circle cx="36.3636" cy="40.3636" r="36.3636" fill="white"/>
+                                </g>
+                                <circle cx="36.3636" cy="40.3636" r="35.6364" stroke="#252526" stroke-width="1.45455"/>
+                                <path d="M29.1408 52.5H49.491C50.5531 52.5 51.4141 51.639 51.4141 50.5768C51.4141 49.4565 50.4689 48.5711 49.3511 48.6453C44.2821 48.9818 31.5121 49.6985 29.9141 48.5C27.9141 47 24.8242 44.5 24.8242 44.5L25.3743 48.2296C25.4008 48.4096 25.4141 48.5914 25.4141 48.7733C25.4141 50.8315 27.0826 52.5 29.1408 52.5Z" fill="white"/>
+                                <g filter="url(#filter1_d_1037_4589)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M29.1408 53.5H49.491C50.0008 53.5 50.4141 53.0867 50.4141 52.5768C50.4141 52.0343 49.9574 51.6072 49.4173 51.6431C46.8781 51.8117 42.3992 52.0762 38.3487 52.1481C36.3261 52.184 34.39 52.1723 32.8486 52.0736C32.0797 52.0244 31.386 51.9522 30.8188 51.8476C30.3047 51.7527 29.7189 51.6036 29.3141 51.3C28.3632 50.5868 27.174 49.6542 26.1844 48.8692L26.3636 50.0837C26.3972 50.312 26.4141 50.5425 26.4141 50.7733C26.4141 52.2792 27.6349 53.5 29.1408 53.5ZM25.3743 50.2296C25.4008 50.4096 25.4141 50.5914 25.4141 50.7733C25.4141 52.8315 27.0826 54.5 29.1408 54.5H49.491C50.5531 54.5 51.4141 53.639 51.4141 52.5768C51.4141 51.4565 50.4689 50.5711 49.3511 50.6453C44.2821 50.9818 31.5121 51.6985 29.9141 50.5C28.6884 49.5807 27.0532 48.2857 25.9708 47.4209C25.2873 46.8746 24.8242 46.5 24.8242 46.5L25.3743 50.2296Z" fill="#252526"/>
+                                </g>
+                                <g filter="url(#filter2_d_1037_4589)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0967 24.9526L14.0561 25.0744C13.9652 25.3469 13.9864 25.6443 14.1148 25.9013C14.2983 26.2682 14.6733 26.5 15.0836 26.5H18.1052C18.601 26.5 19.0543 26.2199 19.276 25.7764C19.3669 25.5946 19.4142 25.3942 19.4142 25.191V24H18.9142H15.4183C14.8187 24 14.2863 24.3837 14.0967 24.9526ZM49.1984 47H25.4142L22.4142 28.5L50.996 33.6541C52.0633 33.8466 52.7827 34.8546 52.6178 35.9265L51.1751 45.3041C51.025 46.2798 50.1855 47 49.1984 47Z" fill="#252526"/>
+                                <path d="M14.0561 25.0744L14.5304 25.2325V25.2325L14.0561 25.0744ZM14.0967 24.9526L13.6223 24.7945V24.7945L14.0967 24.9526ZM14.1148 25.9013L13.6676 26.1249L14.1148 25.9013ZM19.276 25.7764L19.7232 26V26L19.276 25.7764ZM19.4142 24H19.9142V23.5H19.4142V24ZM25.4142 47L24.9206 47.08L24.9887 47.5H25.4142V47ZM22.4142 28.5L22.5029 28.0079L21.8075 27.8825L21.9206 28.58L22.4142 28.5ZM50.996 33.6541L50.9073 34.1462L50.996 33.6541ZM52.6178 35.9265L53.112 36.0025V36.0025L52.6178 35.9265ZM51.1751 45.3041L51.6693 45.3801V45.3801L51.1751 45.3041ZM21.9179 26.515L22.403 26.3937L21.9179 26.515ZM14.5304 25.2325L14.571 25.1107L13.6223 24.7945L13.5817 24.9163L14.5304 25.2325ZM14.562 25.6777C14.4929 25.5393 14.4815 25.3792 14.5304 25.2325L13.5817 24.9163C13.449 25.3146 13.4799 25.7493 13.6676 26.1249L14.562 25.6777ZM15.0836 26C14.8627 26 14.6608 25.8752 14.562 25.6777L13.6676 26.1249C13.9358 26.6612 14.484 27 15.0836 27V26ZM18.1052 26H15.0836V27H18.1052V26ZM18.8288 25.5528C18.6917 25.8269 18.4116 26 18.1052 26V27C18.7904 27 19.4168 26.6129 19.7232 26L18.8288 25.5528ZM18.9142 25.191C18.9142 25.3166 18.885 25.4405 18.8288 25.5528L19.7232 26C19.8488 25.7488 19.9142 25.4718 19.9142 25.191H18.9142ZM18.9142 24V25.191H19.9142V24H18.9142ZM18.9142 24.5H19.4142V23.5H18.9142V24.5ZM15.4183 24.5H18.9142V23.5H15.4183V24.5ZM14.571 25.1107C14.6926 24.746 15.0339 24.5 15.4183 24.5V23.5C14.6034 23.5 13.88 24.0214 13.6223 24.7945L14.571 25.1107ZM25.4142 47.5H49.1984V46.5H25.4142V47.5ZM21.9206 28.58L24.9206 47.08L25.9078 46.92L22.9078 28.42L21.9206 28.58ZM51.0847 33.162L22.5029 28.0079L22.3255 28.9921L50.9073 34.1462L51.0847 33.162ZM53.112 36.0025C53.3181 34.6626 52.4188 33.4026 51.0847 33.162L50.9073 34.1462C51.7077 34.2905 52.2473 35.0465 52.1236 35.8504L53.112 36.0025ZM51.6693 45.3801L53.112 36.0025L52.1236 35.8504L50.6809 45.2281L51.6693 45.3801ZM49.1984 47.5C50.4323 47.5 51.4817 46.5997 51.6693 45.3801L50.6809 45.2281C50.5683 45.9598 49.9387 46.5 49.1984 46.5V47.5ZM22.8993 28.3787L22.403 26.3937L21.4329 26.6362L21.9291 28.6213L22.8993 28.3787ZM22.403 26.3937C22.2283 25.6947 21.9002 24.9867 21.4125 24.4438C20.9192 23.8946 20.2461 23.5 19.4142 23.5V24.5C19.9006 24.5 20.3194 24.7234 20.6686 25.112C21.0232 25.5068 21.2879 26.0563 21.4329 26.6362L22.403 26.3937Z" fill="#252526"/>
+                                </g>
+                                <g filter="url(#filter3_i_1037_4589)">
+                                <circle cx="44.1641" cy="54.25" r="3.75" fill="#464648"/>
+                                </g>
+                                <g filter="url(#filter4_i_1037_4589)">
+                                <circle cx="25.6641" cy="54.25" r="3.75" fill="#464648"/>
+                                </g>
+                                <path d="M48.9141 40H27.9141" stroke="white" stroke-linecap="round"/>
+                                <path d="M48.9141 43.5H27.9141" stroke="white" stroke-linecap="round"/>
+                                <g filter="url(#filter5_d_1037_4589)">
+                                <path d="M79 64.5C79 72.5081 72.5081 79 64.5 79C56.4919 79 50 72.5081 50 64.5C50 56.4919 56.4919 50 64.5 50C72.5081 50 79 56.4919 79 64.5Z" fill="#252526"/>
+                                <path d="M66.0536 58.9954C66.0536 58.2327 65.4353 57.6144 64.6727 57.6144C63.91 57.6144 63.2917 58.2327 63.2917 58.9954L63.2917 63.2917H58.9954C58.2327 63.2917 57.6145 63.9099 57.6145 64.6726C57.6145 65.4353 58.2327 66.0536 58.9954 66.0536H63.2917V70.3499C63.2917 71.1125 63.91 71.7308 64.6727 71.7308C65.4353 71.7308 66.0536 71.1125 66.0536 70.3499V66.0536H70.3499C71.1126 66.0536 71.7309 65.4353 71.7309 64.6726C71.7309 63.9099 71.1126 63.2917 70.3499 63.2917H66.0536V58.9954Z" fill="white"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_i_1037_4589" x="0" y="2" width="81.0871" height="74.7273" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="8.36" dy="-2"/>
+                                <feGaussianBlur stdDeviation="8.45"/>
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0.976471 0 0 0 0 0.729412 0 0 0 0 0.2 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1037_4589"/>
+                                </filter>
+                                <filter id="filter1_d_1037_4589" x="24.8242" y="46.5" width="28.5898" height="8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="2"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0.980392 0 0 0 0 0.752941 0 0 0 0 0.270588 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1037_4589"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1037_4589" result="shape"/>
+                                </filter>
+                                <filter id="filter2_d_1037_4589" x="13.5005" y="23.5" width="41.6411" height="24" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="2"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0.980392 0 0 0 0 0.752941 0 0 0 0 0.270588 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1037_4589"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1037_4589" result="shape"/>
+                                </filter>
+                                <filter id="filter3_i_1037_4589" x="40.4141" y="50.5" width="7.5" height="7.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="2"/>
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1037_4589"/>
+                                </filter>
+                                <filter id="filter4_i_1037_4589" x="21.9141" y="50.5" width="7.5" height="7.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="2"/>
+                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1037_4589"/>
+                                </filter>
+                                <filter id="filter5_d_1037_4589" x="48.619" y="50" width="30.381" height="29" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feOffset dx="-1.38095"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0.980392 0 0 0 0 0.792157 0 0 0 0 0.388235 0 0 0 1 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1037_4589"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1037_4589" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+
+                            </span>
+                        </div>
+                        <h5>Ihr warenkorb ist leer</h5>
+                        <div class="empty-cart-text-block">
+                            <p>Sieht so aus, als hätten Sie noch nichts zu Ihrem Einkaufswagen hinzugefügt.</p>
+                        </div>
+                        
+                        <div class="empty-cart-btn-block offcanvas-close js-offcanvas-close">
+                        <a href="{{ path('frontend.home.page') }}">
+                            <button>Explore products</button>
+                        </a>
+                        </div>
+                        
+                    </div>
+                {% endif %}
+                {# ////////// #}
+
+                {% block utilities_alert_dismissible %}
+                    {% if dismissible %}
+                        <button type="button"
+                                class="close"
+                                {{ dataBsDismissAttr }}="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

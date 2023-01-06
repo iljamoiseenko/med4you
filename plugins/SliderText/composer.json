@@ -1,0 +1,18 @@
+{
+  "name": "swag/plugin-skeleton",
+  "description": "Skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SliderText\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SliderText\\SliderText",
+    "label": {
+      "de-DE": "slider 2.0",
+      "en-GB": "slider 2.0"
+    }
+  }
+}

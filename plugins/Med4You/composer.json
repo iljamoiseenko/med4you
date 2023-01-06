@@ -1,0 +1,18 @@
+{
+  "name": "swag/theme-skeleton",
+  "description": "Theme skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Med4You\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Med4You\\Med4You",
+    "label": {
+      "de-DE": "Theme Med4You plugin",
+      "en-GB": "Theme Med4You plugin"
+    }
+  }
+}
